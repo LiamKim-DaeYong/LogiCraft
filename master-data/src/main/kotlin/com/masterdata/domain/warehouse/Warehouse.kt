@@ -17,7 +17,7 @@ data class Warehouse(
 )
 
 @JvmInline
-value class WarehouseId(val id: String)
+value class WarehouseId(val value: String)
 
 @JvmInline
 value class WarehouseName(val value: String)

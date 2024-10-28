@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: logicraft_db
+      POSTGRES_USER: logicraft_user
+      POSTGRES_PASSWORD: logicraft_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - logicraft-network
+
+volumes:
+  db-data:
+
+networks:
+  logicraft-network:
