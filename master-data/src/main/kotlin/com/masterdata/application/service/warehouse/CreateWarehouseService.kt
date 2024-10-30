@@ -1,9 +1,9 @@
 package com.masterdata.application.service.warehouse
 
 import com.core.enums.ActiveStatus
-import com.masterdata.application.port.`in`.warehouse.RegisterWarehouseCommand
-import com.masterdata.application.port.`in`.warehouse.RegisterWarehouseUseCase
-import com.masterdata.application.port.out.warehouse.RegisterWarehousePort
+import com.masterdata.application.port.`in`.warehouse.CreateWarehouseCommand
+import com.masterdata.application.port.`in`.warehouse.CreateWarehouseUseCase
+import com.masterdata.application.port.out.warehouse.CreateWarehousePort
 import com.masterdata.domain.warehouse.Warehouse
 import com.masterdata.domain.warehouse.WarehouseId
 import com.masterdata.domain.warehouse.WarehouseName
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class RegisterWarehouseService(
-    private val registerWarehousePort: RegisterWarehousePort
-) : RegisterWarehouseUseCase {
+class CreateWarehouseService(
+    private val createWarehousePort: CreateWarehousePort
+) : CreateWarehouseUseCase {
 
-    override fun registerWarehouse(command: RegisterWarehouseCommand): Warehouse {
+    override fun createWarehouse(command: CreateWarehouseCommand): Warehouse {
         val warehouse = Warehouse(
             id = WarehouseId(UUID.randomUUID().toString()),
             name = WarehouseName(command.name),
@@ -26,6 +26,6 @@ class RegisterWarehouseService(
             status = ActiveStatus.ACTIVE
         )
 
-        return registerWarehousePort.registerWarehouse(warehouse)
+        return createWarehousePort.createWarehouse(warehouse)
     }
 }

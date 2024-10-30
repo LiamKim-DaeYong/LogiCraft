@@ -21,23 +21,40 @@ class WarehouseJpaEntity(
     val id: String? = null,
 
     @Column(name = "name", nullable = false)
-    val name: String,
+    var name: String,
 
     @Embedded
-    val address: AddressJpaEntity,
+    var address: AddressJpaEntity,
 
     @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
-    val type: WarehouseType,
+    var type: WarehouseType,
 
     @Embedded
-    val operatingHours: OperatingHoursJpaEntity,
+    var operatingHours: OperatingHoursJpaEntity,
 
     @Column(name = "usage_purpose", nullable = false)
     @Enumerated(EnumType.STRING)
-    val usagePurpose: UsagePurpose,
+    var usagePurpose: UsagePurpose,
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    val status: ActiveStatus
-)
+    var status: ActiveStatus
+) {
+
+    // ======= Business Logic Start =======
+    fun update(
+        name: String,
+        address: AddressJpaEntity,
+        operatingHours: OperatingHoursJpaEntity,
+        usagePurpose: UsagePurpose,
+        type: WarehouseType
+    ) {
+        this.name = name
+        this.address = address
+        this.operatingHours = operatingHours
+        this.usagePurpose = usagePurpose
+        this.type = type
+    }
+    // ======= Business Logic End =======
+}

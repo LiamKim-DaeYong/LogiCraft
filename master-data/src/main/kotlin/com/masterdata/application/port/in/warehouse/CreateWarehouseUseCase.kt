@@ -8,11 +8,11 @@ import com.masterdata.domain.warehouse.enums.UsagePurpose
 import com.masterdata.domain.warehouse.enums.WarehouseType
 
 @UseCase
-interface RegisterWarehouseUseCase {
-    fun registerWarehouse(command: RegisterWarehouseCommand): Warehouse
+interface CreateWarehouseUseCase {
+    fun createWarehouse(command: CreateWarehouseCommand): Warehouse
 }
 
-data class RegisterWarehouseCommand(
+data class CreateWarehouseCommand(
     val name: String,
     val address: Address,
     val type: WarehouseType,

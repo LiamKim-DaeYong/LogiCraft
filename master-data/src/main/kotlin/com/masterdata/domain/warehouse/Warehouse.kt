@@ -6,7 +6,7 @@ import com.masterdata.domain.warehouse.enums.UsagePurpose
 import com.masterdata.domain.warehouse.enums.WarehouseType
 import java.time.LocalTime
 
-data class Warehouse(
+class Warehouse(
     val id: WarehouseId,
     val name: WarehouseName,
     val type: WarehouseType,

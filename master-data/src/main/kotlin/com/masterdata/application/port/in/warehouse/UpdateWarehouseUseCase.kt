@@ -4,15 +4,17 @@ import com.core.annotations.UseCase
 import com.core.model.Address
 import com.masterdata.domain.warehouse.OperatingHours
 import com.masterdata.domain.warehouse.Warehouse
+import com.masterdata.domain.warehouse.enums.UsagePurpose
 
 @UseCase
-interface ModifyWarehouseUseCase {
-    fun modifyWarehouse(command: ModifyWarehouseCommand): Warehouse
+interface UpdateWarehouseUseCase {
+    fun updateWarehouse(command: UpdateWarehouseCommand): Warehouse
 }
 
-data class ModifyWarehouseCommand(
+data class UpdateWarehouseCommand(
     val warehouseId: String,
     val name: String,
     val address: Address,
     val operatingHours: OperatingHours,
+    val usagePurpose: UsagePurpose,
 )
