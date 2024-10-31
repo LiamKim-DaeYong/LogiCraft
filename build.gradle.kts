@@ -1,15 +1,17 @@
 plugins {
-    kotlin("jvm") version "2.0.20"
-    kotlin("plugin.spring") version "2.0.20"
-    kotlin("plugin.jpa") version "2.0.20"
-    id("org.springframework.boot") version "3.3.5"
-    id("io.spring.dependency-management") version "1.1.6"
-    id("nu.studer.jooq") version "9.0"
+    kotlin("jvm")
+    kotlin("plugin.spring")
+    kotlin("plugin.jpa")
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
+    id("nu.studer.jooq")
 }
 
+val version: String by project
+val projectGroup: String by project
 allprojects {
-    group = "com.logicraft"
-    version = "0.0.1-SNAPSHOT"
+    group = projectGroup
+    version = version
 
     repositories {
         mavenCentral()
