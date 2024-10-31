@@ -38,8 +38,20 @@ subprojects {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
+
+    springBoot {
+        mainClass.set("com.logicraft.core.CoreApplication")
+    }
 }
 
-kotlin {
-    jvmToolchain(22)
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+}
+
+tasks.getByName("bootJar") {
+    enabled = false
+}
+
+tasks.getByName("jar") {
+    enabled = true
 }
