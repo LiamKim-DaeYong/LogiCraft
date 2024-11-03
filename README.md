@@ -21,6 +21,7 @@ LogiCraft는 모놀리식 구조를 따르지만, 명확히 분리된 모듈(도
 - **언어**: Kotlin
 - **프레임워크**: Spring Boot
 - **데이터베이스**: PostgreSQL
+- **ORM**: JPA (Java Persistence API)
 - **이벤트 처리**: Spring 이벤트를 활용한 이벤트 기반 통신
 - **비동기 처리**: 코루틴을 통한 비동기 프로세싱
 - **컨테이너**: Docker, Docker Compose
