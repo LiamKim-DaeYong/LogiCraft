@@ -40,16 +40,17 @@ LogiCraft는 모놀리식 구조를 따르지만, 명확히 분리된 모듈(도
 
 1. 이 저장소를 클론합니다:
    ```bash
-     git clone https://github.com/LiamKim-DaeYong/LogiCraft.git
+   git clone https://github.com/LiamKim-DaeYong/LogiCraft.git
    ```
 2. 프로젝트 디렉토리로 이동합니다:
-  ```bash
-    cd LogiCraft
-  ```
+   ```bash
+   cd LogiCraft
+   ```
 3. 애플리케이션을 빌드하고 실행합니다:
    ```bash
-    ./gradlew bootRun
-  ```
+   ./gradlew bootRun
+   ```
+
 ## 사전 요구사항
 - JDK 21 이상이 설치되어 있어야 합니다.
 - Docker 및 Docker Compose가 설치되어 있어야 합니다.
