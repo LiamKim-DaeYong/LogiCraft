@@ -1,24 +1,35 @@
 package com.logicraft.masterdata.adapter.`in`.event.handler.warehouse
 
-import com.logicraft.common.annotations.EventListener
-import com.logicraft.common.event.BaseEvent
+import com.logicraft.common.annotations.EventHandlerAdapter
+import com.logicraft.common.event.CommandEvent
 import com.logicraft.common.event.EventProcessor
+import com.logicraft.common.event.EventResponseHandler
 import com.logicraft.common.event.EventType
 import com.logicraft.masterdata.adapter.`in`.event.type.WarehouseEventType
+import com.logicraft.masterdata.application.port.`in`.warehouse.CreateWarehouseCommand
 import com.logicraft.masterdata.application.port.`in`.warehouse.CreateWarehouseUseCase
+import org.springframework.context.event.EventListener
 
-@EventListener
+@EventHandlerAdapter
 class CreateWarehouseEventHandler(
     private val createWarehouseUseCase: CreateWarehouseUseCase,
 ): EventProcessor<CreateWarehouseEvent> {
 
+    @EventListener
     override fun handle(event: CreateWarehouseEvent) {
-        //createWarehouseUseCase.createWarehouse()
+        println("Event received: $event")
+        val result = createWarehouseUseCase.createWarehouse(event.command)
+
+        event.metadata.correlationId?.let { correlationId ->
+            EventResponseHandler.completeEvent(correlationId, result)
+        }
     }
 }
 
 data class CreateWarehouseEvent(
-    val warehouseId: String,
-    val warehouseName: String,
-    override val eventType: EventType = WarehouseEventType.CREATE_WAREHOUSE
-) : BaseEvent(eventType)
+    val createWarehouseCommand: CreateWarehouseCommand,
+    override val eventType: EventType = WarehouseEventType.CREATE_WAREHOUSE,
+) : CommandEvent<CreateWarehouseCommand>(
+    command = createWarehouseCommand,
+    eventType = eventType
+)

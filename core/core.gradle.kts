@@ -9,6 +9,4 @@ dependencies {
     implementation(project(":lot-management"))
     implementation(project(":serial-number"))
     implementation(project(":purchase-order"))
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 }

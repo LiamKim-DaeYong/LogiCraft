@@ -17,7 +17,7 @@ import jakarta.persistence.Table
 class WarehouseJpaEntity(
 
     @Id
-    @Column(name = "warehouse_id")
+    @Column(name = "warehouse_id", nullable = false)
     val id: String? = null,
 
     @Column(name = "name", nullable = false)
@@ -31,7 +31,7 @@ class WarehouseJpaEntity(
     var type: WarehouseType,
 
     @Embedded
-    var operatingHours: com.logicraft.masterdata.adapter.out.persistence.entity.warehouse.OperatingHoursJpaEntity,
+    var operatingHours: OperatingHoursJpaEntity,
 
     @Column(name = "usage_purpose", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -46,7 +46,7 @@ class WarehouseJpaEntity(
     fun update(
         name: String,
         address: AddressJpaEntity,
-        operatingHours: com.logicraft.masterdata.adapter.out.persistence.entity.warehouse.OperatingHoursJpaEntity,
+        operatingHours: OperatingHoursJpaEntity,
         usagePurpose: UsagePurpose,
         type: WarehouseType
     ) {

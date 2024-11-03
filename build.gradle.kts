@@ -30,10 +30,15 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-stdlib")
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
         implementation("org.postgresql:postgresql")
         implementation("org.jooq:jooq")
         implementation("org.jooq:jooq-meta")
         implementation("org.jooq:jooq-codegen")
+
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
