@@ -17,11 +17,10 @@ class CreateWarehouseEventHandler(
 
     @EventListener
     override fun handle(event: CreateWarehouseEvent) {
-        println("Event received: $event")
-        val result = createWarehouseUseCase.createWarehouse(event.command)
+        val warehouse  = createWarehouseUseCase.createWarehouse(event.command)
 
         event.metadata.correlationId?.let { correlationId ->
-            EventResponseHandler.completeEvent(correlationId, result)
+            EventResponseHandler.completeEvent(correlationId, warehouse.id.value)
         }
     }
 }

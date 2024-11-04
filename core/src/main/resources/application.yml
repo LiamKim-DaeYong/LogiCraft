@@ -17,3 +17,7 @@ management:
     web:
       exposure:
         include: "*"
+
+event:
+  publisher:
+    timeout: 5000

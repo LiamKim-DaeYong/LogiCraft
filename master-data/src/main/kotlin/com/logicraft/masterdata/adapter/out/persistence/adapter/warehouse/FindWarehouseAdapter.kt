@@ -1,7 +1,7 @@
 package com.logicraft.masterdata.adapter.out.persistence.adapter.warehouse
 
 import com.logicraft.common.annotations.PersistenceAdapter
-import com.logicraft.masterdata.adapter.out.persistence.mapper.WarehouseMapper
+import com.logicraft.masterdata.adapter.out.persistence.mapper.WarehouseEntityMapper
 import com.logicraft.masterdata.adapter.out.persistence.repository.warehouse.WarehouseJpaRepository
 import com.logicraft.masterdata.application.port.out.warehouse.FindWarehousePort
 import com.logicraft.masterdata.domain.warehouse.Warehouse
@@ -14,7 +14,7 @@ class FindWarehouseAdapter(
 
     override fun findWarehouseById(warehouseId: WarehouseId): Warehouse? {
         return warehouseJpaRepository.findById(warehouseId.value)
-            .map { WarehouseMapper.toDomainEntity(it) }
+            .map { WarehouseEntityMapper.toDomainEntity(it) }
             .orElse(null)
     }
 }

@@ -8,7 +8,7 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 import com.logicraft.masterdata.domain.warehouse.WarehouseId
 import com.logicraft.masterdata.domain.warehouse.WarehouseName
 
-object WarehouseMapper {
+object WarehouseEntityMapper {
     fun toJpaEntity(warehouse: Warehouse): WarehouseJpaEntity {
         return WarehouseJpaEntity(
             id = warehouse.id.value,

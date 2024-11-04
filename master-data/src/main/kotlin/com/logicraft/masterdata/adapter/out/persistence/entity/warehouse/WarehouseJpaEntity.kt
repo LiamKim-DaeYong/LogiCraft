@@ -47,14 +47,12 @@ class WarehouseJpaEntity(
         name: String,
         address: AddressJpaEntity,
         operatingHours: OperatingHoursJpaEntity,
-        usagePurpose: UsagePurpose,
-        type: WarehouseType
+        usagePurpose: UsagePurpose
     ) {
         this.name = name
         this.address = address
         this.operatingHours = operatingHours
         this.usagePurpose = usagePurpose
-        this.type = type
     }
     // ======= Business Logic End =======
 }

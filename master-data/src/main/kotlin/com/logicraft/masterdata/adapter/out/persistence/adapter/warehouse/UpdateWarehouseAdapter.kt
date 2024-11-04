@@ -3,7 +3,7 @@ package com.logicraft.masterdata.adapter.out.persistence.adapter.warehouse
 import com.logicraft.common.annotations.PersistenceAdapter
 import com.logicraft.common.mapper.AddressMapper
 import com.logicraft.masterdata.adapter.out.persistence.entity.warehouse.OperatingHoursJpaEntity
-import com.logicraft.masterdata.adapter.out.persistence.mapper.WarehouseMapper
+import com.logicraft.masterdata.adapter.out.persistence.mapper.WarehouseEntityMapper
 import com.logicraft.masterdata.adapter.out.persistence.repository.warehouse.WarehouseJpaRepository
 import com.logicraft.masterdata.application.port.out.warehouse.UpdateWarehousePort
 import com.logicraft.masterdata.domain.warehouse.Warehouse
@@ -25,10 +25,11 @@ class UpdateWarehouseAdapter(
                 updatedWarehouse.operatingHours.openingTime,
                 updatedWarehouse.operatingHours.closingTime
             ),
-            usagePurpose = updatedWarehouse.usagePurpose,
-            type = updatedWarehouse.type
+            usagePurpose = updatedWarehouse.usagePurpose
         )
 
-        return WarehouseMapper.toDomainEntity(existingWarehouseEntity)
+        warehouseJpaRepository.save(existingWarehouseEntity)
+
+        return WarehouseEntityMapper.toDomainEntity(existingWarehouseEntity)
     }
 }
