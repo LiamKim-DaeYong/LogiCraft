@@ -38,7 +38,8 @@ LogiCraft는 모놀리식 구조를 따르지만, 명확히 분리된 모듈(도
 ## 설치 및 실행
 
 ### 로컬 환경에서 실행
-
+- **진입점**: LogiCraft 프로젝트의 진입점은 `core` 모듈에만 존재하며, 애플리케이션 실행 및 이벤트 오케스트레이션은 `core` 모듈을 통해 이루어집니다. 다른 모듈들은 독립적으로 실행되지 않으며, 특정 비즈니스 기능을 담당하는 구조로 설계되었습니다.
+  
 1. 이 저장소를 클론합니다:
    ```bash
    git clone https://github.com/LiamKim-DaeYong/LogiCraft.git
@@ -47,7 +48,11 @@ LogiCraft는 모놀리식 구조를 따르지만, 명확히 분리된 모듈(도
    ```bash
    cd LogiCraft
    ```
-3. 애플리케이션을 빌드하고 실행합니다:
+3. 데이터베이스를 Docker Compose로 실행합니다:
+   ```bash
+   docker-compose up -d
+   ```
+4. 애플리케이션을 빌드하고 실행합니다:
    ```bash
    ./gradlew bootRun
    ```
