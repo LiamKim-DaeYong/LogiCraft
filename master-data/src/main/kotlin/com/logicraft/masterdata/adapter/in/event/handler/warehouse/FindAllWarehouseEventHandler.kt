@@ -7,29 +7,29 @@ import com.logicraft.common.event.EventResponseHandler
 import com.logicraft.common.event.EventType
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.WarehouseDtoMapper
 import com.logicraft.masterdata.adapter.`in`.event.type.WarehouseEventType
+import com.logicraft.masterdata.application.port.`in`.warehouse.FindAllWarehousesUseCase
 import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseCommand
-import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseUseCase
 import org.springframework.context.event.EventListener
 
 @EventHandlerAdapter
-class FindWarehouseEventHandler(
-    private val findWarehouseUseCase: FindWarehouseUseCase
-) : EventProcessor<FindWarehouseEvent> {
+class FindAllWarehousesEventHandler(
+    private val findAllWarehousesUseCase: FindAllWarehousesUseCase
+) : EventProcessor<FindAllWarehousesEvent> {
 
     @EventListener
-    override fun handle(event: FindWarehouseEvent) {
-        val warehouse = findWarehouseUseCase.findWarehouse(event.command)
-        val response = WarehouseDtoMapper.toWarehouseResponse(warehouse)
+    override fun handle(event: FindAllWarehousesEvent) {
+        val warehouses = findAllWarehousesUseCase.findAllWarehouses()
+        val responses = warehouses.map { WarehouseDtoMapper.toWarehouseResponse(it) }
 
         event.metadata.correlationId?.let { correlationId ->
-            EventResponseHandler.completeEvent(correlationId, response)
+            EventResponseHandler.completeEvent(correlationId, responses)
         }
     }
 }
 
-data class FindWarehouseEvent(
+data class FindAllWarehousesEvent(
     val findWarehouseCommand: FindWarehouseCommand,
-    override val eventType: EventType = WarehouseEventType.FIND_WAREHOUSE
+    override val eventType: EventType = WarehouseEventType.FIND_ALL_WAREHOUSES
 ) : CommandEvent<FindWarehouseCommand>(
     command = findWarehouseCommand,
     eventType = eventType

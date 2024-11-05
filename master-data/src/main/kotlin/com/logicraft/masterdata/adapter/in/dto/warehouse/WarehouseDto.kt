@@ -1,11 +1,21 @@
-package com.logicraft.core.dto.masterdata
+package com.logicraft.masterdata.adapter.`in`.dto.warehouse
 
 import com.logicraft.common.model.Address
 import com.logicraft.masterdata.domain.warehouse.OperatingHours
 import com.logicraft.masterdata.domain.warehouse.enums.UsagePurpose
 import com.logicraft.masterdata.domain.warehouse.enums.WarehouseType
 
-data class CreateWarehouseDto(
+data class WarehouseResponse(
+    val id: String,
+    val name: String,
+    val type: WarehouseType,
+    val address: Address,
+    val operatingHours: OperatingHours,
+    val usagePurpose: UsagePurpose,
+    val status: String
+)
+
+data class CreateWarehouseRequest(
     val name: String,
     val type: WarehouseType,
     val address: Address,
@@ -13,7 +23,7 @@ data class CreateWarehouseDto(
     val usagePurpose: UsagePurpose
 )
 
-data class UpdateWarehouseDto(
+data class UpdateWarehouseRequest(
     val name: String,
     val address: Address,
     val operatingHours: OperatingHours,

@@ -20,4 +20,6 @@ management:
 
 event:
   publisher:
-    timeout: 5000
+    timeoutMillis: 5000
+    maxRetries: 3
+    retryDelayMillis: 1000
