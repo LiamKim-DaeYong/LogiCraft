@@ -1,14 +1,14 @@
 package com.logicraft.masterdata.adapter.`in`.event.handler.warehouse
 
 import com.logicraft.common.annotations.EventHandlerAdapter
-import com.logicraft.common.event.CommandEvent
 import com.logicraft.common.event.EventProcessor
 import com.logicraft.common.event.EventResponseHandler
 import com.logicraft.common.event.EventType
+import com.logicraft.common.event.QueryEvent
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.WarehouseDtoMapper
 import com.logicraft.masterdata.adapter.`in`.event.type.WarehouseEventType
 import com.logicraft.masterdata.application.port.`in`.warehouse.FindAllWarehousesUseCase
-import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseCommand
+import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseQuery
 import org.springframework.context.event.EventListener
 
 @EventHandlerAdapter
@@ -28,9 +28,7 @@ class FindAllWarehousesEventHandler(
 }
 
 data class FindAllWarehousesEvent(
-    val findWarehouseCommand: FindWarehouseCommand,
-    override val eventType: EventType = WarehouseEventType.FIND_ALL_WAREHOUSES
-) : CommandEvent<FindWarehouseCommand>(
-    command = findWarehouseCommand,
+    override val eventType: EventType = WarehouseEventType.FindAllWarehouses
+) : QueryEvent<FindWarehouseQuery>(
     eventType = eventType
 )

@@ -22,7 +22,7 @@ class UpdateWarehouseEventHandler(
 
 data class UpdateWarehouseEvent(
     val updateWarehouseCommand: UpdateWarehouseCommand,
-    override val eventType: EventType = WarehouseEventType.UPDATE_WAREHOUSE,
+    override val eventType: EventType = WarehouseEventType.UpdateWarehouse,
 ) : CommandEvent<UpdateWarehouseCommand>(
     command = updateWarehouseCommand,
     eventType = eventType

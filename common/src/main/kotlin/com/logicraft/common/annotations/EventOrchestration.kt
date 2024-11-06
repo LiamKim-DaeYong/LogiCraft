@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
 @Component
-annotation class OrchestrationAdapter(
+annotation class EventOrchestration(
     @get:AliasFor(annotation = Component::class)
     val value: String = ""
 )

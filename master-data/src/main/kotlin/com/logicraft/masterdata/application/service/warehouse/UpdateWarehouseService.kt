@@ -1,6 +1,6 @@
 package com.logicraft.masterdata.application.service.warehouse
 
-import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseCommand
+import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseQuery
 import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseUseCase
 import com.logicraft.masterdata.application.port.`in`.warehouse.UpdateWarehouseCommand
 import com.logicraft.masterdata.application.port.`in`.warehouse.UpdateWarehouseUseCase
@@ -15,7 +15,7 @@ class UpdateWarehouseService(
     private val updateWarehousePort: UpdateWarehousePort,
 ) : UpdateWarehouseUseCase {
     override fun updateWarehouse(command: UpdateWarehouseCommand): Warehouse {
-        val warehouse = findWarehouseUseCase.findWarehouse(FindWarehouseCommand(command.warehouseId))
+        val warehouse = findWarehouseUseCase.findWarehouse(FindWarehouseQuery(command.warehouseId))
 
         val updatedWarehouse = Warehouse(
             id = warehouse.id,

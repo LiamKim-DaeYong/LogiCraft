@@ -1,18 +1,17 @@
 package com.logicraft.masterdata.adapter.`in`.event.type
 
+import com.logicraft.common.event.BasicEventAction
+import com.logicraft.common.event.EventAction
+import com.logicraft.common.event.EventCategory
 import com.logicraft.common.event.EventType
 
-enum class WarehouseEventType : EventType {
-    FIND_ALL_WAREHOUSES {
-        override val typeName = "FIND_ALL_WAREHOUSES"
-    },
-    FIND_WAREHOUSE {
-        override val typeName = "FIND_WAREHOUSE"
-    },
-    CREATE_WAREHOUSE {
-        override val typeName = "CREATE_WAREHOUSE"
-    },
-    UPDATE_WAREHOUSE {
-        override val typeName = "UPDATE_WAREHOUSE"
-    }
+sealed class WarehouseEventType(
+    override val typeName: String,
+    val category: EventCategory,
+    val action: EventAction
+) : EventType {
+    data object FindAllWarehouses : WarehouseEventType("FIND_ALL_WAREHOUSES", EventCategory.DataRetrieval, BasicEventAction.Query)
+    data object FindWarehouse : WarehouseEventType("FIND_WAREHOUSE", EventCategory.DataRetrieval, BasicEventAction.Query)
+    data object CreateWarehouse : WarehouseEventType("CREATE_WAREHOUSE", EventCategory.DataModification, BasicEventAction.Command.Create)
+    data object UpdateWarehouse : WarehouseEventType("UPDATE_WAREHOUSE", EventCategory.DataModification, BasicEventAction.Command.Update)
 }

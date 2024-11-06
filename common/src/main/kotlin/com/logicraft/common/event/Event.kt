@@ -12,6 +12,15 @@ interface EventType {
     val typeName: String
 }
 
+object EmptyQuery
+
+@Suppress("UNCHECKED_CAST")
+abstract class QueryEvent<T>(
+    val query: T = EmptyQuery as T,
+    override val eventType: EventType,
+    override val metadata: EventMetadata = EventMetadata()
+) : Event
+
 abstract class CommandEvent<T>(
     val command: T,
     override val eventType: EventType,

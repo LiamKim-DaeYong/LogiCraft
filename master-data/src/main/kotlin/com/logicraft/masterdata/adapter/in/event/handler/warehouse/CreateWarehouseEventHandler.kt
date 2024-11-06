@@ -27,7 +27,7 @@ class CreateWarehouseEventHandler(
 
 data class CreateWarehouseEvent(
     val createWarehouseCommand: CreateWarehouseCommand,
-    override val eventType: EventType = WarehouseEventType.CREATE_WAREHOUSE,
+    override val eventType: EventType = WarehouseEventType.CreateWarehouse,
 ) : CommandEvent<CreateWarehouseCommand>(
     command = createWarehouseCommand,
     eventType = eventType

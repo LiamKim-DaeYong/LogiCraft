@@ -1,21 +1,25 @@
 package com.logicraft.common.event
 
 import kotlinx.coroutines.CompletableDeferred
+import java.util.concurrent.*
 
 object EventResponseHandler {
-    private val callbacks = mutableMapOf<String, CompletableDeferred<*>>()
+    private val callbacks = ConcurrentHashMap<String, CompletableDeferred<*>>()
 
-    @Suppress("UNCHECKED_CAST")
     fun <T> registerCallback(event: Event, deferred: CompletableDeferred<T>) {
-        event.metadata.correlationId?.let { correlationId ->
-            callbacks[correlationId] = deferred as CompletableDeferred<*>
-        } ?: println("Warning: Event does not have a correlationId")
+        val correlationId = event.metadata.correlationId
+            ?: throw IllegalArgumentException("Event must have a correlationId")
+
+        synchronized(this) {
+            callbacks[correlationId] = deferred
+        }
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun completeEvent(correlationId: String, result: Any) {
-        val callback = callbacks.remove(correlationId) as? CompletableDeferred<Any>
+        val callback = synchronized(this) { callbacks.remove(correlationId) }
         if (callback != null) {
-            callback.complete(result)
+            (callback as CompletableDeferred<Any?>).complete(result)
         } else {
             println("Warning: No callback found for correlationId: $correlationId")
         }
