@@ -6,8 +6,10 @@ import com.logicraft.masterdata.application.port.out.warehouse.FindWarehousePort
 import com.logicraft.masterdata.domain.warehouse.Warehouse
 import com.logicraft.masterdata.domain.warehouse.WarehouseId
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional(readOnly = true)
 class FindWarehouseService(
     private val findWarehousePort: FindWarehousePort
 ) : FindWarehouseUseCase {

@@ -5,6 +5,7 @@ import com.logicraft.common.event.CommandEvent
 import com.logicraft.common.event.EventProcessor
 import com.logicraft.common.event.EventResponseHandler
 import com.logicraft.common.event.EventType
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.mapper.toCreateWarehouseResponse
 import com.logicraft.masterdata.adapter.`in`.event.type.WarehouseEventType
 import com.logicraft.masterdata.application.port.`in`.warehouse.CreateWarehouseCommand
 import com.logicraft.masterdata.application.port.`in`.warehouse.CreateWarehouseUseCase
@@ -18,10 +19,9 @@ class CreateWarehouseEventHandler(
     @EventListener
     override fun handle(event: CreateWarehouseEvent) {
         val warehouse  = createWarehouseUseCase.createWarehouse(event.command)
+        val response = warehouse.toCreateWarehouseResponse()
 
-        event.metadata.correlationId?.let { correlationId ->
-            EventResponseHandler.completeEvent(correlationId, warehouse.id.value)
-        }
+        EventResponseHandler.completeEvent(event, response)
     }
 }
 

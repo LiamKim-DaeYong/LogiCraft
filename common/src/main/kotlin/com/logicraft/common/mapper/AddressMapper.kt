@@ -3,26 +3,24 @@ package com.logicraft.common.mapper
 import com.logicraft.common.entity.AddressJpaEntity
 import com.logicraft.common.model.Address
 
-object AddressMapper {
-    fun toJpaEntity(address: Address): AddressJpaEntity {
-        return AddressJpaEntity(
-            city = address.city,
-            street = address.street,
-            postalCode = address.postalCode,
-            country = address.country,
-            detailAddress = address.detailAddress,
-            provinceOrState = address.provinceOrState
-        )
-    }
+fun Address.toJpaEntity(): AddressJpaEntity {
+    return AddressJpaEntity(
+        city = city,
+        street = street,
+        postalCode = postalCode,
+        country = country,
+        detailAddress = detailAddress,
+        provinceOrState = provinceOrState
+    )
+}
 
-    fun toDomainEntity(addressJpaEntity: AddressJpaEntity): Address {
-        return Address(
-            city = addressJpaEntity.city,
-            street = addressJpaEntity.street,
-            postalCode = addressJpaEntity.postalCode,
-            country = addressJpaEntity.country,
-            detailAddress = addressJpaEntity.detailAddress,
-            provinceOrState = addressJpaEntity.provinceOrState
-        )
-    }
+fun AddressJpaEntity.toDomainEntity(): Address {
+    return Address(
+        city = city,
+        street = street,
+        postalCode = postalCode,
+        country = country,
+        detailAddress = detailAddress,
+        provinceOrState = provinceOrState
+    )
 }

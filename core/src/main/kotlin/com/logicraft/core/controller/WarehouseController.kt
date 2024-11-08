@@ -1,11 +1,14 @@
 package com.logicraft.core.controller
 
-import com.logicraft.core.response.ApiResponse
-import com.logicraft.masterdata.adapter.`in`.dto.warehouse.CreateWarehouseRequest
-import com.logicraft.masterdata.adapter.`in`.dto.warehouse.UpdateWarehouseRequest
-import com.logicraft.masterdata.adapter.`in`.dto.warehouse.WarehouseDtoMapper
-import com.logicraft.masterdata.adapter.`in`.dto.warehouse.WarehouseResponse
 import com.logicraft.core.orchestration.masterdata.WarehouseEventOrchestrator
+import com.logicraft.core.response.ApiResponse
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.mapper.toCreateWarehouseCommand
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.mapper.toUpdateWarehouseCommand
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.request.CreateWarehouseRequest
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.request.UpdateWarehouseRequest
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.response.CreateWarehouseResponse
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.response.UpdateWarehouseResponse
+import com.logicraft.masterdata.adapter.`in`.dto.warehouse.response.WarehouseResponse
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -21,46 +24,48 @@ class WarehouseController(
 ) {
     @GetMapping
     suspend fun getAllWarehouses(): ApiResponse<List<WarehouseResponse>> {
-        val warehouses = warehouseEventOrchestrator.fetchAllWarehouses()
-        return ApiResponse.success(
-            message = "Warehouses retrieved successfully",
-            data = warehouses
-        )
+        return warehouseEventOrchestrator.fetchAllWarehouses().let {
+            ApiResponse.success(
+                message = "Warehouses retrieved successfully",
+                data = it
+            )
+        }
     }
 
     @GetMapping("/{warehouseId}")
     suspend fun getWarehouseById(@PathVariable warehouseId: String): ApiResponse<WarehouseResponse> {
-        val warehouse = warehouseEventOrchestrator.fetchWarehouseById(warehouseId)
-        return ApiResponse.success(
-            message = "Warehouse retrieved successfully",
-            data = warehouse
-        )
+        return warehouseEventOrchestrator.fetchWarehouseById(warehouseId).let {
+            ApiResponse.success(
+                message = "Warehouse retrieved successfully",
+                data = it
+            )
+        }
     }
 
     @PostMapping
-    suspend fun createWarehouse(@RequestBody createWarehouseRequest: CreateWarehouseRequest): ApiResponse<String> {
-        val warehouseId = warehouseEventOrchestrator.createWarehouse(
-            WarehouseDtoMapper.toCreateWarehouseCommand(createWarehouseRequest)
-        )
-
-        return ApiResponse.created(
-            message = "Warehouse created successfully",
-            data = warehouseId
-        )
+    suspend fun createWarehouse(@RequestBody createWarehouseRequest: CreateWarehouseRequest): ApiResponse<CreateWarehouseResponse> {
+        return warehouseEventOrchestrator.createWarehouse(
+            createWarehouseRequest.toCreateWarehouseCommand()
+        ).let {
+            ApiResponse.created(
+                message = "Warehouse created successfully",
+                data = it
+            )
+        }
     }
 
     @PatchMapping("/{warehouseId}")
     suspend fun updateWarehouse(
         @PathVariable warehouseId: String,
         @RequestBody updateWarehouseRequest: UpdateWarehouseRequest
-    ): ApiResponse<String>  {
-        warehouseEventOrchestrator.updateWarehouse(
-            WarehouseDtoMapper.toUpdateWarehouseCommand(
-                warehouseId = warehouseId,
-                request = updateWarehouseRequest
+    ): ApiResponse<UpdateWarehouseResponse>  {
+        return warehouseEventOrchestrator.updateWarehouse(
+            updateWarehouseRequest.toUpdateWarehouseCommand(warehouseId)
+        ).let {
+            ApiResponse.success(
+                message = "Warehouse updated successfully",
+                data = it
             )
-        )
-
-        return ApiResponse.success(message = "Warehouse updated successfully")
+        }
     }
 }

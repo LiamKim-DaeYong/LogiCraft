@@ -1,4 +1,4 @@
-package com.logicraft.masterdata.adapter.`in`.dto.warehouse
+package com.logicraft.masterdata.adapter.`in`.dto.warehouse.response
 
 import com.logicraft.common.model.Address
 import com.logicraft.masterdata.domain.warehouse.OperatingHours
@@ -13,19 +13,4 @@ data class WarehouseResponse(
     val operatingHours: OperatingHours,
     val usagePurpose: UsagePurpose,
     val status: String
-)
-
-data class CreateWarehouseRequest(
-    val name: String,
-    val type: WarehouseType,
-    val address: Address,
-    val operatingHours: OperatingHours,
-    val usagePurpose: UsagePurpose
-)
-
-data class UpdateWarehouseRequest(
-    val name: String,
-    val address: Address,
-    val operatingHours: OperatingHours,
-    val usagePurpose: UsagePurpose
 )

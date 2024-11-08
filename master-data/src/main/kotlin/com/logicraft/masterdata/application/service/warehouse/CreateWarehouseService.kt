@@ -8,9 +8,11 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 import com.logicraft.masterdata.domain.warehouse.WarehouseId
 import com.logicraft.masterdata.domain.warehouse.WarehouseName
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
+@Transactional
 class CreateWarehouseService(
     private val createWarehousePort: CreateWarehousePort
 ) : CreateWarehouseUseCase {

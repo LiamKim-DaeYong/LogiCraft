@@ -4,8 +4,10 @@ import com.logicraft.masterdata.application.port.`in`.warehouse.WarehouseStatusC
 import com.logicraft.masterdata.application.port.out.warehouse.WarehouseStatusChangePort
 import com.logicraft.masterdata.domain.warehouse.Warehouse
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class WarehouseStatusChangeService(
     private val warehouseStatusChangePort: WarehouseStatusChangePort
 ): WarehouseStatusChangeUseCase {
