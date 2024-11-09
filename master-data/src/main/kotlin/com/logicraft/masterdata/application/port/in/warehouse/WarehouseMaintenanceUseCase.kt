@@ -5,6 +5,7 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 
 @UseCase
 interface WarehouseMaintenanceUseCase {
+
     fun startMaintenance(warehouseId: String): Warehouse
     fun endMaintenance(warehouseId: String): Warehouse
 }

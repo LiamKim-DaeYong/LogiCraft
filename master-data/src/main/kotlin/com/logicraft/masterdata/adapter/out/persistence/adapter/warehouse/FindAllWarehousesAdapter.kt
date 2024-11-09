@@ -8,7 +8,7 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 
 @PersistenceAdapter
 class FindAllWarehousesAdapter(
-    private val warehouseQueryRepository: WarehouseQueryRepository
+    private val warehouseQueryRepository: WarehouseQueryRepository,
 ) : FindAllWarehousesPort {
 
     override fun findAllWarehouses(): List<Warehouse> {

@@ -12,7 +12,7 @@ import com.logicraft.masterdata.domain.warehouse.WarehouseId
 
 @PersistenceAdapter
 class UpdateWarehouseAdapter(
-    private val warehouseCommandRepository: WarehouseCommandRepository
+    private val warehouseCommandRepository: WarehouseCommandRepository,
 ) : UpdateWarehousePort {
 
     override fun updateWarehouse(warehouseId: WarehouseId, updatedWarehouse: Warehouse): Warehouse {

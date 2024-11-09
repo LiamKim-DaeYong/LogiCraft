@@ -14,7 +14,7 @@ import java.util.*
 @Service
 @Transactional
 class CreateWarehouseService(
-    private val createWarehousePort: CreateWarehousePort
+    private val createWarehousePort: CreateWarehousePort,
 ) : CreateWarehouseUseCase {
 
     override fun createWarehouse(command: CreateWarehouseCommand): Warehouse {

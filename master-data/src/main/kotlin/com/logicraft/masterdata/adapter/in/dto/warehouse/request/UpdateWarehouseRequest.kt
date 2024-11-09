@@ -8,5 +8,5 @@ data class UpdateWarehouseRequest(
     val name: String,
     val address: Address,
     val operatingHours: OperatingHours,
-    val usagePurpose: UsagePurpose
+    val usagePurpose: UsagePurpose,
 )

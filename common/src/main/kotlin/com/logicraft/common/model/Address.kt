@@ -6,5 +6,5 @@ data class Address(
     val postalCode: String,
     val country: String,
     val detailAddress: String? = null,
-    val provinceOrState: String? = null
+    val provinceOrState: String? = null,
 )

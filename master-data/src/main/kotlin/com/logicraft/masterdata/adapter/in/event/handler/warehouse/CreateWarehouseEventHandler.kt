@@ -14,11 +14,11 @@ import org.springframework.context.event.EventListener
 @EventHandlerAdapter
 class CreateWarehouseEventHandler(
     private val createWarehouseUseCase: CreateWarehouseUseCase,
-): EventProcessor<CreateWarehouseEvent> {
+) : EventProcessor<CreateWarehouseEvent> {
 
     @EventListener
     override fun handle(event: CreateWarehouseEvent) {
-        val warehouse  = createWarehouseUseCase.createWarehouse(event.command)
+        val warehouse = createWarehouseUseCase.createWarehouse(event.command)
         val response = warehouse.toCreateWarehouseResponse()
 
         EventResponseHandler.completeEvent(event, response)

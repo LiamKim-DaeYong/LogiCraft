@@ -10,13 +10,15 @@ data class ApiResponse<T>(
     val data: T?,
     val timestamp: String = Instant.now().toString(),
     val meta: Map<String, Any>? = null,
-    val errorDetails: List<String>? = null
+    val errorDetails: List<String>? = null,
 ) {
+
     companion object {
+
         fun <T> success(
             data: T? = null,
             message: String = "Operation successful",
-            meta: Map<String, Any>? = null
+            meta: Map<String, Any>? = null,
         ): ApiResponse<T> {
             return ApiResponse(
                 status = HttpStatus.OK,
@@ -30,7 +32,7 @@ data class ApiResponse<T>(
         fun <T> created(
             data: T? = null,
             message: String = "Resource created successfully",
-            meta: Map<String, Any>? = null
+            meta: Map<String, Any>? = null,
         ): ApiResponse<T> {
             return ApiResponse(
                 status = HttpStatus.CREATED,
@@ -45,7 +47,7 @@ data class ApiResponse<T>(
             message: String,
             data: T? = null,
             meta: Map<String, Any>? = null,
-            errorDetails: List<String>? = null
+            errorDetails: List<String>? = null,
         ): ApiResponse<T> {
             return ApiResponse(
                 status = HttpStatus.BAD_REQUEST,
@@ -61,7 +63,7 @@ data class ApiResponse<T>(
             message: String,
             data: T? = null,
             meta: Map<String, Any>? = null,
-            errorDetails: List<String>? = null
+            errorDetails: List<String>? = null,
         ): ApiResponse<T> {
             return ApiResponse(
                 status = HttpStatus.INTERNAL_SERVER_ERROR,
@@ -79,7 +81,7 @@ data class ApiResponse<T>(
             message: String,
             data: T? = null,
             meta: Map<String, Any>? = null,
-            errorDetails: List<String>? = null
+            errorDetails: List<String>? = null,
         ): ApiResponse<T> {
             return ApiResponse(
                 status = status,

@@ -6,7 +6,7 @@ import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 
 @Repository
-class WarehouseQueryRepository(private val dslContext: DSLContext){
+class WarehouseQueryRepository(private val dslContext: DSLContext) {
 
     fun findAll(): List<WarehouseRecord> {
         return dslContext

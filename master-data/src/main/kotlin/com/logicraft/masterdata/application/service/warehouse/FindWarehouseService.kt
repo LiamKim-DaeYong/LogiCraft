@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional(readOnly = true)
 class FindWarehouseService(
-    private val findWarehousePort: FindWarehousePort
+    private val findWarehousePort: FindWarehousePort,
 ) : FindWarehouseUseCase {
 
     override fun findWarehouse(query: FindWarehouseQuery): Warehouse {

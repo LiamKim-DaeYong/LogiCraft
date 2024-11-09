@@ -9,8 +9,9 @@ import javax.sql.DataSource
 
 @Configuration
 class JooqConfig(
-    private val dataSource: DataSource
+    private val dataSource: DataSource,
 ) {
+
     @Bean
     fun dslContext(): DSLContext {
         return DSL.using(dataSource, SQLDialect.POSTGRES)

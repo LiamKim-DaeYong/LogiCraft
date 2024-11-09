@@ -5,6 +5,7 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 
 @UseCase
 interface FindWarehouseUseCase {
+
     fun findWarehouse(query: FindWarehouseQuery): Warehouse
 }
 

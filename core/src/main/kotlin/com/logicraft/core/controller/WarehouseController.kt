@@ -20,8 +20,9 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/warehouses")
 class WarehouseController(
-    private val warehouseEventOrchestrator: WarehouseEventOrchestrator
+    private val warehouseEventOrchestrator: WarehouseEventOrchestrator,
 ) {
+
     @GetMapping
     suspend fun getAllWarehouses(): ApiResponse<List<WarehouseResponse>> {
         return warehouseEventOrchestrator.fetchAllWarehouses().let {
@@ -57,7 +58,7 @@ class WarehouseController(
     @PatchMapping("/{warehouseId}")
     suspend fun updateWarehouse(
         @PathVariable warehouseId: String,
-        @RequestBody updateWarehouseRequest: UpdateWarehouseRequest
+        @RequestBody updateWarehouseRequest: UpdateWarehouseRequest,
     ): ApiResponse<UpdateWarehouseResponse> {
         return warehouseEventOrchestrator.updateWarehouse(
             updateWarehouseRequest.toUpdateWarehouseCommand(warehouseId)

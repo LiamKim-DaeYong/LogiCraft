@@ -10,5 +10,5 @@ data class OperatingHoursJpaEntity(
     val openingTime: LocalTime = LocalTime.MIN,
 
     @Column(name = "closing_time", nullable = false)
-    val closingTime: LocalTime = LocalTime.MAX
+    val closingTime: LocalTime = LocalTime.MAX,
 )

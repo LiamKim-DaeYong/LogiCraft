@@ -39,7 +39,7 @@ class WarehouseJpaEntity(
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    var status: ActiveStatus
+    var status: ActiveStatus,
 ) {
 
     // ======= Business Logic Start ======= //
@@ -47,7 +47,7 @@ class WarehouseJpaEntity(
         name: String,
         address: AddressJpaEntity,
         operatingHours: OperatingHoursJpaEntity,
-        usagePurpose: UsagePurpose
+        usagePurpose: UsagePurpose,
     ) {
         this.name = name
         this.address = address

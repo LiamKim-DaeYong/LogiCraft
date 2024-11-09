@@ -9,8 +9,9 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 class WarehouseMaintenanceService(
-    private val warehouseMaintenancePort: WarehouseMaintenancePort
-): WarehouseMaintenanceUseCase {
+    private val warehouseMaintenancePort: WarehouseMaintenancePort,
+) : WarehouseMaintenanceUseCase {
+
     override fun startMaintenance(warehouseId: String): Warehouse {
         TODO("Not yet implemented")
     }

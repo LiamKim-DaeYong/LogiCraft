@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.*
 
 object EventResponseHandler {
+
     private val callbacks = ConcurrentHashMap<String, CompletableDeferred<*>>()
     private val executor = Executors.newSingleThreadScheduledExecutor()
     private val logger = LoggerFactory.getLogger(EventResponseHandler::class.java)
@@ -22,7 +23,11 @@ object EventResponseHandler {
      * @param deferred 콜백을 처리할 CompletableDeferred 객체
      * @param timeoutMillis 콜백 만료 시간 (기본 60초)
      */
-    fun <T> registerCallback(event: Event, deferred: CompletableDeferred<T>, timeoutMillis: Long = 60000) {
+    fun <T> registerCallback(
+        event: Event,
+        deferred: CompletableDeferred<T>,
+        timeoutMillis: Long = 60000,
+    ) {
         val correlationId = event.getCorrelationId()
 
         registerOrThrow(correlationId, deferred, event)
@@ -61,7 +66,11 @@ object EventResponseHandler {
     /**
      * 콜백을 등록하고 중복된 경우 예외를 던집니다.
      */
-    private fun <T> registerOrThrow(correlationId: String, deferred: CompletableDeferred<T>, event: Event) {
+    private fun <T> registerOrThrow(
+        correlationId: String,
+        deferred: CompletableDeferred<T>,
+        event: Event,
+    ) {
         callbacks.putIfAbsent(correlationId, deferred)?.let {
             throw InfrastructureException.EventPublishingException("Callback with correlationId $correlationId is already registered, Event: $event")
         }

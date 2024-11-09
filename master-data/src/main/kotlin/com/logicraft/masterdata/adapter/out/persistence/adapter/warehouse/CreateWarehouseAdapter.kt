@@ -9,7 +9,7 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 
 @PersistenceAdapter
 class CreateWarehouseAdapter(
-    private val warehouseCommandRepository: WarehouseCommandRepository
+    private val warehouseCommandRepository: WarehouseCommandRepository,
 ) : CreateWarehousePort {
 
     override fun createWarehouse(warehouse: Warehouse): Warehouse {

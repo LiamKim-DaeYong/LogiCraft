@@ -9,7 +9,7 @@ import com.logicraft.masterdata.domain.warehouse.WarehouseId
 
 @PersistenceAdapter
 class FindWarehouseAdapter(
-    private val warehouseQueryRepository: WarehouseQueryRepository
+    private val warehouseQueryRepository: WarehouseQueryRepository,
 ) : FindWarehousePort {
 
     override fun findWarehouseById(warehouseId: WarehouseId): Warehouse? {

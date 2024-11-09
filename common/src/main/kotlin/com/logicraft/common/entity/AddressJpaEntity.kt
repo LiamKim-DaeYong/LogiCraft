@@ -21,5 +21,5 @@ data class AddressJpaEntity(
     val detailAddress: String? = null,
 
     @Column(name = "province_or_state")
-    val provinceOrState: String? = null
+    val provinceOrState: String? = null,
 )

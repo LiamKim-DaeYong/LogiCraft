@@ -10,5 +10,5 @@ data class CreateWarehouseRequest(
     val type: WarehouseType,
     val address: Address,
     val operatingHours: OperatingHours,
-    val usagePurpose: UsagePurpose
+    val usagePurpose: UsagePurpose,
 )

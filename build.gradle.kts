@@ -5,6 +5,7 @@ plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
     id("nu.studer.jooq")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 val version: String by project
@@ -25,6 +26,7 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
     apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
     apply(plugin = "nu.studer.jooq")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -36,7 +38,6 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-jooq")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-        jooqGenerator("org.postgresql:postgresql")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -50,43 +51,34 @@ subprojects {
         mainClass.set("com.logicraft.core.CoreApplication")
     }
 
-    jooq {
-        configurations {
-            create("main") {
-                generateSchemaSourceOnCompilation.set(false)
+    kotlin {
+        sourceSets {
+            val main by getting {
+                kotlin.srcDirs(
+                    "src/main/kotlin",
+                    layout.buildDirectory.dir("generated/jooq").get().asFile.path,
+                )
+                resources.srcDir("src/main/resources")
+            }
 
-                jooqConfiguration.apply {
-                    jdbc.apply {
-                        driver = "org.postgresql.Driver"
-                        url = "jdbc:postgresql://localhost:5432/logicraft_db"
-                        user = "logicraft_user"
-                        password = "logicraft_password"
-                    }
-                    generator.apply {
-                        name = "org.jooq.codegen.KotlinGenerator"
-                        database.apply {
-                            name = "org.jooq.meta.postgres.PostgresDatabase"
-                            inputSchema = "public"
-                        }
-                        generate.apply {
-                            isDaos = false
-                            isRecords = true
-                            isFluentSetters = true
-                            isJavaTimeTypes = true
-                            isDeprecated = false
-
-                            withKotlinNotNullPojoAttributes(true)
-                            withKotlinNotNullRecordAttributes(true)
-                        }
-                        target.apply {
-                            packageName = "com.logicraft.generated.jooq"
-                            directory = "src/generated"
-                            encoding = "UTF-8"
-                        }
-                    }
-                }
+            val test by getting {
+                kotlin.srcDir("src/test/kotlin")
+                resources.srcDir("src/test/resources")
             }
         }
+    }
+
+    ktlint {
+        ignoreFailures = true
+        filter {
+            exclude { entry ->
+                entry.file.toString().run { contains("generated") || contains("test") }
+            }
+        }
+    }
+
+    tasks.processResources {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
 }
 

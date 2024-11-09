@@ -8,6 +8,7 @@ sealed class EventCategory {
 }
 
 interface EventAction {
+
     val actionName: String
 }
 

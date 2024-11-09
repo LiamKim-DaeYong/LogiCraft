@@ -1,25 +1,25 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/logicraft_db
-    username: logicraft_user
-    password: logicraft_password
-    driver-class-name: org.postgresql.Driver
+    datasource:
+        url: jdbc:postgresql://localhost:5432/logicraft_db
+        username: logicraft_user
+        password: logicraft_password
+        driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+    endpoints:
+        web:
+            exposure:
+                include: "*"
 
 event:
-  publisher:
-    timeoutMillis: 5000
-    maxRetries: 3
-    retryDelayMillis: 1000
+    publisher:
+        timeoutMillis: 5000
+        maxRetries: 3
+        retryDelayMillis: 1000

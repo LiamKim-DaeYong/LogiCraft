@@ -7,12 +7,12 @@ import kotlin.reflect.KClass
 sealed class DomainException(
     errorCode: ErrorCode,
     message: String? = null,
-    cause: Throwable? = null
+    cause: Throwable? = null,
 ) : BaseException(errorCode, message ?: errorCode.message, cause) {
 
     class NotFoundException(
         entityClass: KClass<*>,
-        identifier: String
+        identifier: String,
     ) : DomainException(
         ErrorCode.NOT_FOUND,
         message = "${entityClass.simpleName} with identifier $identifier not found"
@@ -22,7 +22,7 @@ sealed class DomainException(
         entityClass: KClass<*>,
         identifier: String,
         currentState: Enum<*>,
-        expectedState: Enum<*>? = null
+        expectedState: Enum<*>? = null,
     ) : DomainException(
         ErrorCode.BAD_REQUEST,
         message = """

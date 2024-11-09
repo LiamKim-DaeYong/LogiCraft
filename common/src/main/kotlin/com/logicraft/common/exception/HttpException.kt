@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus
 
 sealed class HttpException(
     errorCode: ErrorCode,
-    message: String? = null
+    message: String? = null,
 ) : BaseException(errorCode, message ?: errorCode.message) {
 
     class NotFoundException(message: String? = null) : HttpException(
@@ -21,7 +21,7 @@ sealed class HttpException(
 
     class ValidationException(
         message: String? = null,
-        val details: List<String>? = null
+        val details: List<String>? = null,
     ) : HttpException(
         ErrorCode.VALIDATION_ERROR,
         message,

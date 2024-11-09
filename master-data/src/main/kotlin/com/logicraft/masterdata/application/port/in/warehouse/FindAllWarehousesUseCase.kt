@@ -6,5 +6,6 @@ import com.logicraft.masterdata.domain.warehouse.enums.WarehouseType
 
 @UseCase
 interface FindAllWarehousesUseCase {
+
     fun findAllWarehouses(): List<Warehouse>
 }

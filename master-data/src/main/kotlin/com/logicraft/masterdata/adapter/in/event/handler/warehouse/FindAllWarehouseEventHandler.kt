@@ -13,7 +13,7 @@ import org.springframework.context.event.EventListener
 
 @EventHandlerAdapter
 class FindAllWarehousesEventHandler(
-    private val findAllWarehousesUseCase: FindAllWarehousesUseCase
+    private val findAllWarehousesUseCase: FindAllWarehousesUseCase,
 ) : EventProcessor<FindAllWarehousesEvent> {
 
     @EventListener
@@ -26,7 +26,7 @@ class FindAllWarehousesEventHandler(
 }
 
 data class FindAllWarehousesEvent(
-    override val eventType: EventType = WarehouseEventType.FindAllWarehouses
+    override val eventType: EventType = WarehouseEventType.FindAllWarehouses,
 ) : QueryEvent<FindWarehouseQuery>(
     eventType = eventType
 )

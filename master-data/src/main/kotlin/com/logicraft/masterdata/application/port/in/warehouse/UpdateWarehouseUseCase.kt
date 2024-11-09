@@ -8,6 +8,7 @@ import com.logicraft.masterdata.domain.warehouse.enums.UsagePurpose
 
 @UseCase
 interface UpdateWarehouseUseCase {
+
     fun updateWarehouse(command: UpdateWarehouseCommand): Warehouse
 }
 

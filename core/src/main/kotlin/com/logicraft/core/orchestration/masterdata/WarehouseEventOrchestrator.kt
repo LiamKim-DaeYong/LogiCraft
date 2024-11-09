@@ -14,6 +14,7 @@ import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseQue
 import com.logicraft.masterdata.application.port.`in`.warehouse.UpdateWarehouseCommand
 
 interface WarehouseEventOrchestrator {
+
     suspend fun fetchAllWarehouses(): List<WarehouseResponse>
     suspend fun fetchWarehouseById(warehouseId: String): WarehouseResponse
     suspend fun createWarehouse(createWarehouseCommand: CreateWarehouseCommand): CreateWarehouseResponse
@@ -22,8 +23,9 @@ interface WarehouseEventOrchestrator {
 
 @EventOrchestration
 class WarehouseEventOrchestratorImpl(
-    private val eventPublisher: EventPublisher
+    private val eventPublisher: EventPublisher,
 ) : WarehouseEventOrchestrator {
+
     override suspend fun fetchAllWarehouses(): List<WarehouseResponse> {
         return eventPublisher.publishAndWaitForResponse(
             event = FindAllWarehousesEvent()
