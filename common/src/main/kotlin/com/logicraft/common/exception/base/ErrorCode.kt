@@ -15,7 +15,4 @@ enum class ErrorCode(val message: String, val status: HttpStatus) {
     CIRCUIT_BREAKER("Circuit breaker is open", HttpStatus.SERVICE_UNAVAILABLE),
     DEPENDENCY_FAILURE("Dependency failure occurred", HttpStatus.BAD_GATEWAY),
     MISSING_CORRELATION_ID("Missing correlationId", HttpStatus.BAD_REQUEST);
-
-
-    fun getStatus(): HttpStatus = this.status
 }
