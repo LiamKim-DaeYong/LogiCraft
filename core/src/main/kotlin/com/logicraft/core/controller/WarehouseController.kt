@@ -1,7 +1,7 @@
 package com.logicraft.core.controller
 
 import com.logicraft.core.orchestration.masterdata.WarehouseEventOrchestrator
-import com.logicraft.core.response.ApiResponse
+import com.logicraft.common.response.ApiResponse
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.mapper.toCreateWarehouseCommand
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.mapper.toUpdateWarehouseCommand
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.request.CreateWarehouseRequest
@@ -58,7 +58,7 @@ class WarehouseController(
     suspend fun updateWarehouse(
         @PathVariable warehouseId: String,
         @RequestBody updateWarehouseRequest: UpdateWarehouseRequest
-    ): ApiResponse<UpdateWarehouseResponse>  {
+    ): ApiResponse<UpdateWarehouseResponse> {
         return warehouseEventOrchestrator.updateWarehouse(
             updateWarehouseRequest.toUpdateWarehouseCommand(warehouseId)
         ).let {

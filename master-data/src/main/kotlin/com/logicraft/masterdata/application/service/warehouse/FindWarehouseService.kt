@@ -1,5 +1,7 @@
 package com.logicraft.masterdata.application.service.warehouse
 
+import com.logicraft.common.exception.DomainException
+import com.logicraft.common.exception.HttpException
 import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseQuery
 import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseUseCase
 import com.logicraft.masterdata.application.port.out.warehouse.FindWarehousePort
@@ -16,6 +18,6 @@ class FindWarehouseService(
 
     override fun findWarehouse(query: FindWarehouseQuery): Warehouse {
         return findWarehousePort.findWarehouseById(WarehouseId(query.warehouseId))
-            ?: throw IllegalArgumentException("Warehouse not found")
+            ?: throw DomainException.NotFoundException(Warehouse::class, query.warehouseId)
     }
 }

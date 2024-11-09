@@ -2,6 +2,7 @@ package com.logicraft.core.event
 
 import com.logicraft.common.event.Event
 import com.logicraft.common.event.EventResponseHandler
+import com.logicraft.common.exception.InfrastructureException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withTimeout
@@ -23,7 +24,7 @@ class SpringEventPublisher(
         try {
             applicationEventPublisher.publishEvent(event)
         } catch (ex: Exception) {
-            throw IllegalStateException("Failed to publish event: ${event.eventType}", ex)
+            throw InfrastructureException.EventPublishingException("Failed to publish event: ${event.eventType}", ex)
         }
     }
 
@@ -40,13 +41,13 @@ class SpringEventPublisher(
                 attempt++
 
                 if (attempt >= properties.maxRetries) {
-                    throw IllegalStateException("Event publishing failed after ${properties.maxRetries} attempts", ex)
+                    throw InfrastructureException.EventPublishingException("Event publishing failed after ${properties.maxRetries} attempts", ex)
                 } else {
                     delay(properties.retryDelayMillis)
                 }
             }
         }
 
-        throw IllegalStateException("Unexpected error in event publishing")
+        throw InfrastructureException.EventPublishingException("Unexpected error in event publishing")
     }
 }

@@ -1,4 +1,4 @@
-package com.logicraft.core.response
+package com.logicraft.common.response
 
 import org.springframework.http.HttpStatus
 import java.time.Instant
@@ -66,6 +66,24 @@ data class ApiResponse<T>(
             return ApiResponse(
                 status = HttpStatus.INTERNAL_SERVER_ERROR,
                 code = HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                message = message,
+                data = data,
+                meta = meta,
+                errorDetails = errorDetails
+            )
+        }
+
+        fun <T> error(
+            status: HttpStatus,
+            code: Int,
+            message: String,
+            data: T? = null,
+            meta: Map<String, Any>? = null,
+            errorDetails: List<String>? = null
+        ): ApiResponse<T> {
+            return ApiResponse(
+                status = status,
+                code = code,
                 message = message,
                 data = data,
                 meta = meta,

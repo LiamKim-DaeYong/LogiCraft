@@ -42,7 +42,7 @@ class WarehouseJpaEntity(
     var status: ActiveStatus
 ) {
 
-    // ======= Business Logic Start =======
+    // ======= Business Logic Start ======= //
     fun update(
         name: String,
         address: AddressJpaEntity,
@@ -54,5 +54,5 @@ class WarehouseJpaEntity(
         this.operatingHours = operatingHours
         this.usagePurpose = usagePurpose
     }
-    // ======= Business Logic End =======
+    // ======= Business Logic End ======= //
 }
