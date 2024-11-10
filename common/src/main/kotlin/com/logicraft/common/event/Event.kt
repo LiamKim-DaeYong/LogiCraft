@@ -5,7 +5,6 @@ import java.time.LocalDateTime
 import java.util.*
 
 interface Event {
-
     val eventType: EventType
     val metadata: EventMetadata
 
@@ -16,7 +15,6 @@ interface Event {
 }
 
 interface EventType {
-
     val typeName: String
 }
 
@@ -40,9 +38,7 @@ data class EventMetadata(
     val initiatedBy: String? = null,
     val timestamp: LocalDateTime = LocalDateTime.now(),
 ) {
-
     companion object {
-
         fun generateCorrelationId(): String {
             return UUID.randomUUID().toString()
         }

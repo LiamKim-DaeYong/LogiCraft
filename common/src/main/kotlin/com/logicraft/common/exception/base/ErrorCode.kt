@@ -14,5 +14,5 @@ enum class ErrorCode(val message: String, val status: HttpStatus) {
     TIMEOUT("Request timed out", HttpStatus.REQUEST_TIMEOUT),
     CIRCUIT_BREAKER("Circuit breaker is open", HttpStatus.SERVICE_UNAVAILABLE),
     DEPENDENCY_FAILURE("Dependency failure occurred", HttpStatus.BAD_GATEWAY),
-    MISSING_CORRELATION_ID("Missing correlationId", HttpStatus.BAD_REQUEST);
+    MISSING_CORRELATION_ID("Missing correlationId", HttpStatus.BAD_REQUEST),
 }

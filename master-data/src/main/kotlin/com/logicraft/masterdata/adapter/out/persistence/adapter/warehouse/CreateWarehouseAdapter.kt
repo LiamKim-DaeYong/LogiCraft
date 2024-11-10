@@ -11,7 +11,6 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 class CreateWarehouseAdapter(
     private val warehouseCommandRepository: WarehouseCommandRepository,
 ) : CreateWarehousePort {
-
     override fun createWarehouse(warehouse: Warehouse): Warehouse {
         val warehouseJpaEntity = warehouse.toJpaEntity()
         val savedEntity = warehouseCommandRepository.save(warehouseJpaEntity)

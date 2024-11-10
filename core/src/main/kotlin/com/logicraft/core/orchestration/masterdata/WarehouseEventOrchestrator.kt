@@ -14,10 +14,12 @@ import com.logicraft.masterdata.application.port.`in`.warehouse.FindWarehouseQue
 import com.logicraft.masterdata.application.port.`in`.warehouse.UpdateWarehouseCommand
 
 interface WarehouseEventOrchestrator {
-
     suspend fun fetchAllWarehouses(): List<WarehouseResponse>
+
     suspend fun fetchWarehouseById(warehouseId: String): WarehouseResponse
+
     suspend fun createWarehouse(createWarehouseCommand: CreateWarehouseCommand): CreateWarehouseResponse
+
     suspend fun updateWarehouse(updateWarehouseCommand: UpdateWarehouseCommand): UpdateWarehouseResponse
 }
 
@@ -25,28 +27,27 @@ interface WarehouseEventOrchestrator {
 class WarehouseEventOrchestratorImpl(
     private val eventPublisher: EventPublisher,
 ) : WarehouseEventOrchestrator {
-
     override suspend fun fetchAllWarehouses(): List<WarehouseResponse> {
         return eventPublisher.publishAndWaitForResponse(
-            event = FindAllWarehousesEvent()
+            event = FindAllWarehousesEvent(),
         )
     }
 
     override suspend fun fetchWarehouseById(warehouseId: String): WarehouseResponse {
         return eventPublisher.publishAndWaitForResponse(
-            event = FindWarehouseEvent(FindWarehouseQuery(warehouseId))
+            event = FindWarehouseEvent(FindWarehouseQuery(warehouseId)),
         )
     }
 
     override suspend fun createWarehouse(createWarehouseCommand: CreateWarehouseCommand): CreateWarehouseResponse {
         return eventPublisher.publishAndWaitForResponse(
-            event = CreateWarehouseEvent(createWarehouseCommand)
+            event = CreateWarehouseEvent(createWarehouseCommand),
         )
     }
 
     override suspend fun updateWarehouse(updateWarehouseCommand: UpdateWarehouseCommand): UpdateWarehouseResponse {
         return eventPublisher.publishAndWaitForResponse(
-            event = UpdateWarehouseEvent(updateWarehouseCommand)
+            event = UpdateWarehouseEvent(updateWarehouseCommand),
         )
     }
 }

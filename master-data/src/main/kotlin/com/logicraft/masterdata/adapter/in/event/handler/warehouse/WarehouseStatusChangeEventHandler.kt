@@ -4,5 +4,4 @@ import com.logicraft.masterdata.application.port.`in`.warehouse.WarehouseStatusC
 
 class WarehouseStatusChangeEventHandler(
     private val warehouseStatusChangeUseCase: WarehouseStatusChangeUseCase,
-) {
-}
+)

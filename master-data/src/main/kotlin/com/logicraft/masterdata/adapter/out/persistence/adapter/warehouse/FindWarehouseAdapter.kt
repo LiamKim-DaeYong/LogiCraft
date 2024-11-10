@@ -11,7 +11,6 @@ import com.logicraft.masterdata.domain.warehouse.WarehouseId
 class FindWarehouseAdapter(
     private val warehouseQueryRepository: WarehouseQueryRepository,
 ) : FindWarehousePort {
-
     override fun findWarehouseById(warehouseId: WarehouseId): Warehouse? {
         return warehouseQueryRepository.findById(warehouseId.value)?.toDomainEntity()
     }

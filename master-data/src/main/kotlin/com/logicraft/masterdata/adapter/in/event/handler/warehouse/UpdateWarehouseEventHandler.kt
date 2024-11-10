@@ -15,7 +15,6 @@ import org.springframework.context.event.EventListener
 class UpdateWarehouseEventHandler(
     private val updateWarehouseUseCase: UpdateWarehouseUseCase,
 ) : EventProcessor<UpdateWarehouseEvent> {
-
     @EventListener
     override fun handle(event: UpdateWarehouseEvent) {
         val warehouse = updateWarehouseUseCase.updateWarehouse(event.command)
@@ -29,6 +28,6 @@ data class UpdateWarehouseEvent(
     val updateWarehouseCommand: UpdateWarehouseCommand,
     override val eventType: EventType = WarehouseEventType.UpdateWarehouse,
 ) : CommandEvent<UpdateWarehouseCommand>(
-    command = updateWarehouseCommand,
-    eventType = eventType
-)
+        command = updateWarehouseCommand,
+        eventType = eventType,
+    )

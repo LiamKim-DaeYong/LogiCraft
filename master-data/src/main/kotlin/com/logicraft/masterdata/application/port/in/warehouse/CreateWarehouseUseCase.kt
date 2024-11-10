@@ -9,7 +9,6 @@ import com.logicraft.masterdata.domain.warehouse.enums.WarehouseType
 
 @UseCase
 interface CreateWarehouseUseCase {
-
     fun createWarehouse(command: CreateWarehouseCommand): Warehouse
 }
 
@@ -20,4 +19,3 @@ data class CreateWarehouseCommand(
     val operatingHours: OperatingHours,
     val usagePurpose: UsagePurpose,
 )
-

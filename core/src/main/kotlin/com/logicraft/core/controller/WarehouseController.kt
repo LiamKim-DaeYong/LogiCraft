@@ -1,7 +1,7 @@
 package com.logicraft.core.controller
 
-import com.logicraft.core.orchestration.masterdata.WarehouseEventOrchestrator
 import com.logicraft.common.response.ApiResponse
+import com.logicraft.core.orchestration.masterdata.WarehouseEventOrchestrator
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.mapper.toCreateWarehouseCommand
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.mapper.toUpdateWarehouseCommand
 import com.logicraft.masterdata.adapter.`in`.dto.warehouse.request.CreateWarehouseRequest
@@ -22,35 +22,38 @@ import org.springframework.web.bind.annotation.RestController
 class WarehouseController(
     private val warehouseEventOrchestrator: WarehouseEventOrchestrator,
 ) {
-
     @GetMapping
     suspend fun getAllWarehouses(): ApiResponse<List<WarehouseResponse>> {
         return warehouseEventOrchestrator.fetchAllWarehouses().let {
             ApiResponse.success(
                 message = "Warehouses retrieved successfully",
-                data = it
+                data = it,
             )
         }
     }
 
     @GetMapping("/{warehouseId}")
-    suspend fun getWarehouseById(@PathVariable warehouseId: String): ApiResponse<WarehouseResponse> {
+    suspend fun getWarehouseById(
+        @PathVariable warehouseId: String,
+    ): ApiResponse<WarehouseResponse> {
         return warehouseEventOrchestrator.fetchWarehouseById(warehouseId).let {
             ApiResponse.success(
                 message = "Warehouse retrieved successfully",
-                data = it
+                data = it,
             )
         }
     }
 
     @PostMapping
-    suspend fun createWarehouse(@RequestBody createWarehouseRequest: CreateWarehouseRequest): ApiResponse<CreateWarehouseResponse> {
+    suspend fun createWarehouse(
+        @RequestBody createWarehouseRequest: CreateWarehouseRequest,
+    ): ApiResponse<CreateWarehouseResponse> {
         return warehouseEventOrchestrator.createWarehouse(
-            createWarehouseRequest.toCreateWarehouseCommand()
+            createWarehouseRequest.toCreateWarehouseCommand(),
         ).let {
             ApiResponse.created(
                 message = "Warehouse created successfully",
-                data = it
+                data = it,
             )
         }
     }
@@ -61,11 +64,11 @@ class WarehouseController(
         @RequestBody updateWarehouseRequest: UpdateWarehouseRequest,
     ): ApiResponse<UpdateWarehouseResponse> {
         return warehouseEventOrchestrator.updateWarehouse(
-            updateWarehouseRequest.toUpdateWarehouseCommand(warehouseId)
+            updateWarehouseRequest.toUpdateWarehouseCommand(warehouseId),
         ).let {
             ApiResponse.success(
                 message = "Warehouse updated successfully",
-                data = it
+                data = it,
             )
         }
     }

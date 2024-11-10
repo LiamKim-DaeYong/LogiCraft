@@ -4,5 +4,4 @@ import com.logicraft.masterdata.application.port.`in`.warehouse.WarehouseMainten
 
 class WarehouseMaintenanceEventHandler(
     private val warehouseMaintenanceUseCase: WarehouseMaintenanceUseCase,
-) {
-}
+)

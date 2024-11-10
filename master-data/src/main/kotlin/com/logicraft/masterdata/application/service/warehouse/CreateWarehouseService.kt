@@ -16,7 +16,6 @@ import java.util.*
 class CreateWarehouseService(
     private val createWarehousePort: CreateWarehousePort,
 ) : CreateWarehouseUseCase {
-
     override fun createWarehouse(command: CreateWarehouseCommand): Warehouse {
         val warehouse = Warehouse(
             id = WarehouseId(UUID.randomUUID().toString()),

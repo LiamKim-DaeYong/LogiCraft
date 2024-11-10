@@ -15,7 +15,6 @@ import org.springframework.context.event.EventListener
 class CreateWarehouseEventHandler(
     private val createWarehouseUseCase: CreateWarehouseUseCase,
 ) : EventProcessor<CreateWarehouseEvent> {
-
     @EventListener
     override fun handle(event: CreateWarehouseEvent) {
         val warehouse = createWarehouseUseCase.createWarehouse(event.command)
@@ -29,6 +28,6 @@ data class CreateWarehouseEvent(
     val createWarehouseCommand: CreateWarehouseCommand,
     override val eventType: EventType = WarehouseEventType.CreateWarehouse,
 ) : CommandEvent<CreateWarehouseCommand>(
-    command = createWarehouseCommand,
-    eventType = eventType
-)
+        command = createWarehouseCommand,
+        eventType = eventType,
+    )

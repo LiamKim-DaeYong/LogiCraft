@@ -10,7 +10,6 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 class FindAllWarehousesAdapter(
     private val warehouseQueryRepository: WarehouseQueryRepository,
 ) : FindAllWarehousesPort {
-
     override fun findAllWarehouses(): List<Warehouse> {
         return warehouseQueryRepository.findAll()
             .map { it.toDomainEntity() }

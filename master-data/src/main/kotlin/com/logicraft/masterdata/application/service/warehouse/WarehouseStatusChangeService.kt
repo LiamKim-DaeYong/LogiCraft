@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional
 class WarehouseStatusChangeService(
     private val warehouseStatusChangePort: WarehouseStatusChangePort,
 ) : WarehouseStatusChangeUseCase {
-
     override fun activateWarehouse(warehouseId: String): Warehouse {
         TODO("Not yet implemented")
     }

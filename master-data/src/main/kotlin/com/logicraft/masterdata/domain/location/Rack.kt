@@ -5,7 +5,6 @@ class Rack(
     val code: RackCode,
     val aisle: Aisle,
 ) {
-
     private val _bins: MutableList<Bin> = mutableListOf()
     val bins: List<Bin>
         get() = _bins

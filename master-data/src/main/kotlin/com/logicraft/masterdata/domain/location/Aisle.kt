@@ -5,7 +5,6 @@ class Aisle(
     val code: AisleCode,
     val zone: Zone,
 ) {
-
     private val _racks: MutableList<Rack> = mutableListOf()
     val racks: List<Rack>
         get() = _racks

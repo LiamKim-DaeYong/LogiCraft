@@ -2,13 +2,11 @@ package com.logicraft.common.exception
 
 import com.logicraft.common.exception.base.BaseException
 import com.logicraft.common.exception.base.ErrorCode
-import org.springframework.http.HttpStatus
 
 sealed class HttpException(
     errorCode: ErrorCode,
     message: String? = null,
 ) : BaseException(errorCode, message ?: errorCode.message) {
-
     class NotFoundException(message: String? = null) : HttpException(
         ErrorCode.NOT_FOUND,
         message,
@@ -23,9 +21,9 @@ sealed class HttpException(
         message: String? = null,
         val details: List<String>? = null,
     ) : HttpException(
-        ErrorCode.VALIDATION_ERROR,
-        message,
-    )
+            ErrorCode.VALIDATION_ERROR,
+            message,
+        )
 
     class UnauthorizedException(message: String? = null) : HttpException(
         ErrorCode.UNAUTHORIZED,

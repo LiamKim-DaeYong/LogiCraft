@@ -15,19 +15,21 @@ fun WarehouseRecord.toDomainEntity(): Warehouse {
         id = WarehouseId(warehouseId),
         name = WarehouseName(name),
         type = WarehouseType.valueOf(type),
-        address = Address(
-            city = city,
-            street = street,
-            postalCode = postalCode,
-            country = country,
-            detailAddress = detailAddress,
-            provinceOrState = provinceOrState
-        ),
-        operatingHours = OperatingHours(
-            openingTime = openingTime,
-            closingTime = closingTime
-        ),
+        address =
+            Address(
+                city = city,
+                street = street,
+                postalCode = postalCode,
+                country = country,
+                detailAddress = detailAddress,
+                provinceOrState = provinceOrState,
+            ),
+        operatingHours =
+            OperatingHours(
+                openingTime = openingTime,
+                closingTime = closingTime,
+            ),
         usagePurpose = UsagePurpose.valueOf(usagePurpose),
-        status = ActiveStatus.valueOf(status)
+        status = ActiveStatus.valueOf(status),
     )
 }

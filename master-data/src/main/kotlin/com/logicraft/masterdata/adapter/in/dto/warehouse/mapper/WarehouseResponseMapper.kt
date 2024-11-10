@@ -13,7 +13,7 @@ fun Warehouse.toWarehouseResponse(): WarehouseResponse {
         address = address,
         operatingHours = operatingHours,
         usagePurpose = usagePurpose,
-        status = status.name
+        status = status.name,
     )
 }
 
@@ -29,6 +29,6 @@ fun Warehouse.toUpdateWarehouseResponse(): UpdateWarehouseResponse {
         address = address,
         operatingHours = operatingHours,
         usagePurpose = usagePurpose,
-        status = status.name
+        status = status.name,
     )
 }

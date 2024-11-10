@@ -16,23 +16,23 @@ class UpdateWarehouseService(
     private val findWarehouseUseCase: FindWarehouseUseCase,
     private val updateWarehousePort: UpdateWarehousePort,
 ) : UpdateWarehouseUseCase {
-
     override fun updateWarehouse(command: UpdateWarehouseCommand): Warehouse {
         val warehouse = findWarehouseUseCase.findWarehouse(FindWarehouseQuery(command.warehouseId))
 
-        val updatedWarehouse = Warehouse(
-            id = warehouse.id,
-            name = WarehouseName(command.name),
-            type = warehouse.type,
-            address = command.address,
-            operatingHours = command.operatingHours,
-            usagePurpose = command.usagePurpose,
-            status = warehouse.status
-        )
+        val updatedWarehouse =
+            Warehouse(
+                id = warehouse.id,
+                name = WarehouseName(command.name),
+                type = warehouse.type,
+                address = command.address,
+                operatingHours = command.operatingHours,
+                usagePurpose = command.usagePurpose,
+                status = warehouse.status,
+            )
 
         return updateWarehousePort.updateWarehouse(
             warehouseId = updatedWarehouse.id,
-            updatedWarehouse = updatedWarehouse
+            updatedWarehouse = updatedWarehouse,
         )
     }
 }

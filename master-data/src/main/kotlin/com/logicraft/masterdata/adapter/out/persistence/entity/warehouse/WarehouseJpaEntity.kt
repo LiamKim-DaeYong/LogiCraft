@@ -14,8 +14,8 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "warehouse")
+@Suppress("ktlint:standard:no-blank-line-in-list", "ktlint:standard:no-trailing-spaces")
 class WarehouseJpaEntity(
-
     @Id
     @Column(name = "warehouse_id", nullable = false)
     val id: String? = null,
@@ -26,22 +26,21 @@ class WarehouseJpaEntity(
     @Embedded
     var address: AddressJpaEntity,
 
-    @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
     var type: WarehouseType,
 
     @Embedded
     var operatingHours: OperatingHoursJpaEntity,
 
-    @Column(name = "usage_purpose", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(name = "usage_purpose", nullable = false)
     var usagePurpose: UsagePurpose,
 
-    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     var status: ActiveStatus,
 ) {
-
     // ======= Business Logic Start ======= //
     fun update(
         name: String,

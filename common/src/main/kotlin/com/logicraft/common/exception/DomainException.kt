@@ -9,14 +9,13 @@ sealed class DomainException(
     message: String? = null,
     cause: Throwable? = null,
 ) : BaseException(errorCode, message ?: errorCode.message, cause) {
-
     class NotFoundException(
         entityClass: KClass<*>,
         identifier: String,
     ) : DomainException(
-        ErrorCode.NOT_FOUND,
-        message = "${entityClass.simpleName} with identifier $identifier not found"
-    )
+            ErrorCode.NOT_FOUND,
+            message = "${entityClass.simpleName} with identifier $identifier not found",
+        )
 
     class InvalidStateException(
         entityClass: KClass<*>,
@@ -24,10 +23,11 @@ sealed class DomainException(
         currentState: Enum<*>,
         expectedState: Enum<*>? = null,
     ) : DomainException(
-        ErrorCode.BAD_REQUEST,
-        message = """
-            ${entityClass.simpleName} with identifier $identifier is in an invalid state: $currentState
-            ${expectedState?.let { "Expected state: $it" } ?: ""}
-        """.trimIndent()
-    )
+            ErrorCode.BAD_REQUEST,
+            message =
+                """
+                ${entityClass.simpleName} with identifier $identifier is in an invalid state: $currentState
+                ${expectedState?.let { "Expected state: $it" } ?: ""}
+                """.trimIndent(),
+        )
 }

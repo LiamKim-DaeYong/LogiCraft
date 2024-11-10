@@ -15,12 +15,13 @@ fun Warehouse.toJpaEntity(): WarehouseJpaEntity {
         name = name.value,
         address = address.toJpaEntity(),
         type = type,
-        operatingHours = OperatingHoursJpaEntity(
-            openingTime = operatingHours.openingTime,
-            closingTime = operatingHours.closingTime
-        ),
+        operatingHours =
+            OperatingHoursJpaEntity(
+                openingTime = operatingHours.openingTime,
+                closingTime = operatingHours.closingTime,
+            ),
         usagePurpose = usagePurpose,
-        status = status
+        status = status,
     )
 }
 
@@ -30,11 +31,12 @@ fun WarehouseJpaEntity.toDomainEntity(): Warehouse {
         name = WarehouseName(name),
         address = address.toDomainEntity(),
         type = type,
-        operatingHours = OperatingHours(
-            openingTime = operatingHours.openingTime,
-            closingTime = operatingHours.closingTime
-        ),
+        operatingHours =
+            OperatingHours(
+                openingTime = operatingHours.openingTime,
+                closingTime = operatingHours.closingTime,
+            ),
         usagePurpose = usagePurpose,
-        status = status
+        status = status,
     )
 }

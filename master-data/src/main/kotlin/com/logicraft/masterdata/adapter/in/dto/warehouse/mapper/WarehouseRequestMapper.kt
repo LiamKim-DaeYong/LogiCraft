@@ -11,7 +11,7 @@ fun CreateWarehouseRequest.toCreateWarehouseCommand(): CreateWarehouseCommand {
         type = type,
         address = address,
         operatingHours = operatingHours,
-        usagePurpose = usagePurpose
+        usagePurpose = usagePurpose,
     )
 }
 
@@ -21,6 +21,6 @@ fun UpdateWarehouseRequest.toUpdateWarehouseCommand(warehouseId: String): Update
         name = name,
         address = address,
         operatingHours = operatingHours,
-        usagePurpose = usagePurpose
+        usagePurpose = usagePurpose,
     )
 }

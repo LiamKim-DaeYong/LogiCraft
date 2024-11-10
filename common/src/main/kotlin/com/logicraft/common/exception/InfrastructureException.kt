@@ -8,7 +8,6 @@ sealed class InfrastructureException(
     message: String? = null,
     cause: Throwable? = null,
 ) : BaseException(errorCode, message ?: errorCode.message, cause) {
-
     class EventPublishingException(
         message: String,
         cause: Throwable? = null,

@@ -10,11 +10,10 @@ sealed class WarehouseEventType(
     val category: EventCategory,
     val action: EventAction,
 ) : EventType {
-
     data object FindAllWarehouses : WarehouseEventType(
         "FIND_ALL_WAREHOUSES",
         EventCategory.DataRetrieval,
-        BasicEventAction.Query
+        BasicEventAction.Query,
     )
 
     data object FindWarehouse :
@@ -23,12 +22,12 @@ sealed class WarehouseEventType(
     data object CreateWarehouse : WarehouseEventType(
         "CREATE_WAREHOUSE",
         EventCategory.DataModification,
-        BasicEventAction.Command.Create
+        BasicEventAction.Command.Create,
     )
 
     data object UpdateWarehouse : WarehouseEventType(
         "UPDATE_WAREHOUSE",
         EventCategory.DataModification,
-        BasicEventAction.Command.Update
+        BasicEventAction.Command.Update,
     )
 }

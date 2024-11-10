@@ -10,8 +10,8 @@ import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Component
 
 interface EventPublisher {
-
     fun publish(event: Event)
+
     suspend fun <T> publishAndWaitForResponse(event: Event): T
 }
 
@@ -20,14 +20,13 @@ class SpringEventPublisher(
     private val applicationEventPublisher: ApplicationEventPublisher,
     private val properties: EventPublisherProperties,
 ) : EventPublisher {
-
     override fun publish(event: Event) {
         try {
             applicationEventPublisher.publishEvent(event)
         } catch (ex: Exception) {
             throw InfrastructureException.EventPublishingException(
                 "Failed to publish event: ${event.eventType}",
-                ex
+                ex,
             )
         }
     }
@@ -47,7 +46,7 @@ class SpringEventPublisher(
                 if (attempt >= properties.maxRetries) {
                     throw InfrastructureException.EventPublishingException(
                         "Event publishing failed after ${properties.maxRetries} attempts",
-                        ex
+                        ex,
                     )
                 } else {
                     delay(properties.retryDelayMillis)

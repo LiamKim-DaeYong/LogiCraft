@@ -14,19 +14,23 @@ import com.logicraft.masterdata.domain.warehouse.WarehouseId
 class UpdateWarehouseAdapter(
     private val warehouseCommandRepository: WarehouseCommandRepository,
 ) : UpdateWarehousePort {
-
-    override fun updateWarehouse(warehouseId: WarehouseId, updatedWarehouse: Warehouse): Warehouse {
-        val existingWarehouseEntity = warehouseCommandRepository.findById(warehouseId.value)
-            .orElseThrow { DomainException.NotFoundException(Warehouse::class, warehouseId.value) }
+    override fun updateWarehouse(
+        warehouseId: WarehouseId,
+        updatedWarehouse: Warehouse,
+    ): Warehouse {
+        val existingWarehouseEntity =
+            warehouseCommandRepository.findById(warehouseId.value)
+                .orElseThrow { DomainException.NotFoundException(Warehouse::class, warehouseId.value) }
 
         existingWarehouseEntity.update(
             name = updatedWarehouse.name.value,
             address = updatedWarehouse.address.toJpaEntity(),
-            operatingHours = OperatingHoursJpaEntity(
-                updatedWarehouse.operatingHours.openingTime,
-                updatedWarehouse.operatingHours.closingTime
-            ),
-            usagePurpose = updatedWarehouse.usagePurpose
+            operatingHours =
+                OperatingHoursJpaEntity(
+                    updatedWarehouse.operatingHours.openingTime,
+                    updatedWarehouse.operatingHours.closingTime,
+                ),
+            usagePurpose = updatedWarehouse.usagePurpose,
         )
 
         return existingWarehouseEntity.toDomainEntity()

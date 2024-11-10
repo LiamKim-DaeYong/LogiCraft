@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional
 class FindAllWarehousesService(
     private val findAllWarehousesPort: FindAllWarehousesPort,
 ) : FindAllWarehousesUseCase {
-
     override fun findAllWarehouses(): List<Warehouse> {
         return findAllWarehousesPort.findAllWarehouses()
     }

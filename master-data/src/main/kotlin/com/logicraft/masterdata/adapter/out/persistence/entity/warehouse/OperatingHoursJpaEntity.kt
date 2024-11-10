@@ -5,6 +5,7 @@ import jakarta.persistence.Embeddable
 import java.time.LocalTime
 
 @Embeddable
+@Suppress("ktlint:standard:no-blank-line-in-list", "ktlint:standard:no-trailing-spaces")
 data class OperatingHoursJpaEntity(
     @Column(name = "opening_time", nullable = false)
     val openingTime: LocalTime = LocalTime.MIN,

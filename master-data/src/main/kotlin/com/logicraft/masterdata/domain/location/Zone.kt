@@ -10,7 +10,6 @@ class Zone(
     val type: ZoneType,
     val status: ZoneStatus,
 ) {
-
     private val _aisles: MutableList<Aisle> = mutableListOf()
     val aisles: List<Aisle>
         get() = _aisles

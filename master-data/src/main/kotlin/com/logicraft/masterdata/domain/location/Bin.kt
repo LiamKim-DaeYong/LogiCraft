@@ -5,7 +5,6 @@ class Bin(
     val code: BinCode,
     val rack: Rack,
 ) {
-
     private var _inventoryCount: Int = 0
     val inventoryCount: Int
         get() = _inventoryCount

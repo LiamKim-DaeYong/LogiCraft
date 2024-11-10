@@ -6,11 +6,9 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.*
 
 object EventResponseHandler {
-
     private val callbacks = ConcurrentHashMap<String, CompletableDeferred<*>>()
     private val executor = Executors.newSingleThreadScheduledExecutor()
     private val logger = LoggerFactory.getLogger(EventResponseHandler::class.java)
-
 
     init {
         executor.scheduleAtFixedRate(::removeExpiredCallbacks, 1, 1, TimeUnit.MINUTES)
@@ -40,7 +38,10 @@ object EventResponseHandler {
      * @param result 콜백에 전달할 결과 값
      */
     @Suppress("UNCHECKED_CAST")
-    fun completeEvent(event: Event, result: Any) {
+    fun completeEvent(
+        event: Event,
+        result: Any,
+    ) {
         val correlationId = event.getCorrelationId()
 
         (callbacks.remove(correlationId) as? CompletableDeferred<Any?>)?.complete(result)
@@ -72,17 +73,24 @@ object EventResponseHandler {
         event: Event,
     ) {
         callbacks.putIfAbsent(correlationId, deferred)?.let {
-            throw InfrastructureException.EventPublishingException("Callback with correlationId $correlationId is already registered, Event: $event")
+            throw InfrastructureException.EventPublishingException(
+                "Callback with correlationId $correlationId is already registered, Event: $event",
+            )
         }
     }
 
     /**
      * 타임아웃 스케줄링
      */
-    private fun scheduleTimeout(correlationId: String, timeoutMillis: Long) {
+    private fun scheduleTimeout(
+        correlationId: String,
+        timeoutMillis: Long,
+    ) {
         executor.schedule({
             callbacks.remove(correlationId)?.completeExceptionally(
-                InfrastructureException.CallbackTimeoutException("Callback timed out for correlationId: $correlationId")
+                InfrastructureException.CallbackTimeoutException(
+                    "Callback timed out for correlationId: $correlationId",
+                ),
             )
         }, timeoutMillis, TimeUnit.MILLISECONDS)
     }

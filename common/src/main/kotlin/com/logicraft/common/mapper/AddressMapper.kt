@@ -10,7 +10,7 @@ fun Address.toJpaEntity(): AddressJpaEntity {
         postalCode = postalCode,
         country = country,
         detailAddress = detailAddress,
-        provinceOrState = provinceOrState
+        provinceOrState = provinceOrState,
     )
 }
 
@@ -21,6 +21,6 @@ fun AddressJpaEntity.toDomainEntity(): Address {
         postalCode = postalCode,
         country = country,
         detailAddress = detailAddress,
-        provinceOrState = provinceOrState
+        provinceOrState = provinceOrState,
     )
 }

@@ -12,9 +12,7 @@ data class ApiResponse<T>(
     val meta: Map<String, Any>? = null,
     val errorDetails: List<String>? = null,
 ) {
-
     companion object {
-
         fun <T> success(
             data: T? = null,
             message: String = "Operation successful",
@@ -25,7 +23,7 @@ data class ApiResponse<T>(
                 code = HttpStatus.OK.value(),
                 message = message,
                 data = data,
-                meta = meta
+                meta = meta,
             )
         }
 
@@ -39,7 +37,7 @@ data class ApiResponse<T>(
                 code = HttpStatus.CREATED.value(),
                 message = message,
                 data = data,
-                meta = meta
+                meta = meta,
             )
         }
 
@@ -55,7 +53,7 @@ data class ApiResponse<T>(
                 message = message,
                 data = data,
                 meta = meta,
-                errorDetails = errorDetails
+                errorDetails = errorDetails,
             )
         }
 
@@ -71,7 +69,7 @@ data class ApiResponse<T>(
                 message = message,
                 data = data,
                 meta = meta,
-                errorDetails = errorDetails
+                errorDetails = errorDetails,
             )
         }
 
@@ -89,7 +87,7 @@ data class ApiResponse<T>(
                 message = message,
                 data = data,
                 meta = meta,
-                errorDetails = errorDetails
+                errorDetails = errorDetails,
             )
         }
     }
