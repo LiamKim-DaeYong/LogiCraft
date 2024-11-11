@@ -38,8 +38,8 @@ class WarehouseJpaEntity(
     var usagePurpose: UsagePurpose,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    var status: ActiveStatus,
+    @Column(name = "active_status", nullable = false)
+    var activeStatus: ActiveStatus,
 ) {
     // ======= Business Logic Start ======= //
     fun update(

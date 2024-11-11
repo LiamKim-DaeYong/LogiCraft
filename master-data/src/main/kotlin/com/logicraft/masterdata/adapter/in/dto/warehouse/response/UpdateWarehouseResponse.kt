@@ -12,5 +12,5 @@ data class UpdateWarehouseResponse(
     val address: Address,
     val operatingHours: OperatingHours,
     val usagePurpose: UsagePurpose,
-    val status: String,
+    val activeStatus: String,
 )

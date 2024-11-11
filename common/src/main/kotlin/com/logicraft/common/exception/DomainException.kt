@@ -30,4 +30,12 @@ sealed class DomainException(
                 ${expectedState?.let { "Expected state: $it" } ?: ""}
                 """.trimIndent(),
         )
+
+    class InvalidAction(
+        entityClass: KClass<*>,
+        action: String,
+    ) : DomainException(
+            ErrorCode.BAD_REQUEST,
+            message = "Action '$action' is not allowed for ${entityClass.simpleName}",
+        )
 }

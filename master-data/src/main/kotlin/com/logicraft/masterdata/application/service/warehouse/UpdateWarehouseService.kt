@@ -27,7 +27,7 @@ class UpdateWarehouseService(
                 address = command.address,
                 operatingHours = command.operatingHours,
                 usagePurpose = command.usagePurpose,
-                status = warehouse.status,
+                activeStatus = warehouse.activeStatus,
             )
 
         return updateWarehousePort.updateWarehouse(

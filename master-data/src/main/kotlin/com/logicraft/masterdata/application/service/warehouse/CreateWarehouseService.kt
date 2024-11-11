@@ -17,15 +17,16 @@ class CreateWarehouseService(
     private val createWarehousePort: CreateWarehousePort,
 ) : CreateWarehouseUseCase {
     override fun createWarehouse(command: CreateWarehouseCommand): Warehouse {
-        val warehouse = Warehouse(
-            id = WarehouseId(UUID.randomUUID().toString()),
-            name = WarehouseName(command.name),
-            type = command.type,
-            address = command.address,
-            operatingHours = command.operatingHours,
-            usagePurpose = command.usagePurpose,
-            status = ActiveStatus.ACTIVE
-        )
+        val warehouse =
+            Warehouse(
+                id = WarehouseId(UUID.randomUUID().toString()),
+                name = WarehouseName(command.name),
+                type = command.type,
+                address = command.address,
+                operatingHours = command.operatingHours,
+                usagePurpose = command.usagePurpose,
+                activeStatus = ActiveStatus.ACTIVE,
+            )
 
         return createWarehousePort.createWarehouse(warehouse)
     }

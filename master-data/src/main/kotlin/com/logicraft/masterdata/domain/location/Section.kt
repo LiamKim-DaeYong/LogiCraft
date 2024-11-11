@@ -2,10 +2,10 @@ package com.logicraft.masterdata.domain.location
 
 import com.logicraft.masterdata.domain.location.policy.StoragePolicy
 
-class Aisle(
+class Section(
     override val id: LocationId,
     override val name: LocationName,
-    val section: Section,
+    val parentZone: Zone,
     override val storagePolicy: StoragePolicy,
 ) : Location {
     private val _locations: MutableList<Location> = mutableListOf()

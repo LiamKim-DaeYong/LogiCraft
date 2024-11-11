@@ -1,27 +1,19 @@
 package com.logicraft.masterdata.domain.location
 
+import com.logicraft.masterdata.domain.location.policy.StoragePolicy
+
 class Rack(
-    val id: RackId,
-    val code: RackCode,
+    override val id: LocationId,
+    override val name: LocationName,
     val aisle: Aisle,
-) {
-    private val _bins: MutableList<Bin> = mutableListOf()
-    val bins: List<Bin>
-        get() = _bins
+    override val storagePolicy: StoragePolicy,
+) : Location {
+    private val _locations: MutableList<Location> = mutableListOf()
+    val locations: List<Location> get() = _locations
 
     // ======= Business Logic Start ======= //
-    fun addBin(bin: Bin) {
-        _bins.add(bin)
+    fun addLocation(location: Location) {
+        _locations.add(location)
     }
     // ======= Business Logic End ======= //
 }
-
-@JvmInline
-value class RackId(
-    val value: String,
-)
-
-@JvmInline
-value class RackCode(
-    val value: String,
-)

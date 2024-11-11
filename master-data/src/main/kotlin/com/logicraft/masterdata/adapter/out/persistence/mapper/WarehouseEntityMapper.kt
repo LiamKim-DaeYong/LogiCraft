@@ -21,7 +21,7 @@ fun Warehouse.toJpaEntity(): WarehouseJpaEntity {
                 closingTime = operatingHours.closingTime,
             ),
         usagePurpose = usagePurpose,
-        status = status,
+        activeStatus = activeStatus,
     )
 }
 
@@ -37,6 +37,6 @@ fun WarehouseJpaEntity.toDomainEntity(): Warehouse {
                 closingTime = operatingHours.closingTime,
             ),
         usagePurpose = usagePurpose,
-        status = status,
+        activeStatus = activeStatus,
     )
 }

@@ -1,37 +1,35 @@
 package com.logicraft.masterdata.domain.location
 
-import com.logicraft.masterdata.domain.location.enums.ZoneStatus
+import com.logicraft.common.enums.ActiveStatus
+import com.logicraft.common.exception.DomainException
 import com.logicraft.masterdata.domain.location.enums.ZoneType
+import com.logicraft.masterdata.domain.location.policy.StoragePolicy
+import com.logicraft.masterdata.domain.warehouse.WarehouseId
 
 class Zone(
-    val id: ZoneId,
+    override val id: LocationId,
+    override val name: LocationName,
+    val warehouseId: WarehouseId,
     val code: ZoneCode,
-    val name: ZoneName,
     val type: ZoneType,
-    val status: ZoneStatus,
-) {
-    private val _aisles: MutableList<Aisle> = mutableListOf()
-    val aisles: List<Aisle>
-        get() = _aisles
+    val activeStatus: ActiveStatus,
+    override val storagePolicy: StoragePolicy,
+) : Location {
+    private val _locations: MutableList<Location> = mutableListOf()
+    val locations: List<Location> get() = _locations
 
     // ======= Business Logic Start ======= //
-    fun addAisle(aisle: Aisle) {
-        _aisles.add(aisle)
+    fun addLocation(location: Location) {
+        if (location is Zone) {
+            throw DomainException.InvalidAction(
+                entityClass = Zone::class,
+                action = "Adding a Zone to another Zone",
+            )
+        }
+        _locations.add(location)
     }
     // ======= Business Logic End ======= //
 }
 
 @JvmInline
-value class ZoneId(
-    val value: String,
-)
-
-@JvmInline
-value class ZoneCode(
-    val value: String,
-)
-
-@JvmInline
-value class ZoneName(
-    val value: String,
-)
+value class ZoneCode(val value: String)

@@ -13,7 +13,7 @@ class Warehouse(
     val address: Address,
     val operatingHours: OperatingHours,
     val usagePurpose: UsagePurpose,
-    val status: ActiveStatus,
+    val activeStatus: ActiveStatus,
 )
 
 @JvmInline
