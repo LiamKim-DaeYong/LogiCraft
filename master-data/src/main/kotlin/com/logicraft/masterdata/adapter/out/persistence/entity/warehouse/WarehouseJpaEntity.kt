@@ -1,5 +1,6 @@
 package com.logicraft.masterdata.adapter.out.persistence.entity.warehouse
 
+import com.logicraft.common.annotations.PersistenceEntity
 import com.logicraft.common.entity.AddressJpaEntity
 import com.logicraft.common.enums.ActiveStatus
 import com.logicraft.masterdata.domain.warehouse.enums.UsagePurpose
@@ -14,31 +15,31 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "warehouse")
-@Suppress("ktlint:standard:no-blank-line-in-list", "ktlint:standard:no-trailing-spaces")
+@PersistenceEntity
 class WarehouseJpaEntity(
     @Id
     @Column(name = "warehouse_id", nullable = false)
-    val id: String? = null,
+    val id: String,
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "warehouse_name", nullable = false)
     var name: String,
 
     @Embedded
     var address: AddressJpaEntity,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
+    @Column(name = "warehouse_type", nullable = false)
     var type: WarehouseType,
 
     @Embedded
     var operatingHours: OperatingHoursJpaEntity,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "usage_purpose", nullable = false)
+    @Column(name = "warehouse_usage_purpose", nullable = false)
     var usagePurpose: UsagePurpose,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "active_status", nullable = false)
+    @Column(name = "warehouse_active_status", nullable = false)
     var activeStatus: ActiveStatus,
 ) {
     // ======= Business Logic Start ======= //

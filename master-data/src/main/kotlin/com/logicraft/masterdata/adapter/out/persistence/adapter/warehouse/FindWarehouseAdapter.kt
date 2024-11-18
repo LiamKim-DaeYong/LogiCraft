@@ -1,7 +1,7 @@
 package com.logicraft.masterdata.adapter.out.persistence.adapter.warehouse
 
 import com.logicraft.common.annotations.PersistenceAdapter
-import com.logicraft.masterdata.adapter.out.persistence.mapper.toDomainEntity
+import com.logicraft.masterdata.adapter.out.persistence.mapper.warehouse.toDomainEntity
 import com.logicraft.masterdata.adapter.out.persistence.repository.warehouse.WarehouseQueryRepository
 import com.logicraft.masterdata.application.port.out.warehouse.FindWarehousePort
 import com.logicraft.masterdata.domain.warehouse.Warehouse

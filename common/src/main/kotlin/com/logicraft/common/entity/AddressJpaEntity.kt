@@ -1,26 +1,27 @@
 package com.logicraft.common.entity
 
+import com.logicraft.common.annotations.PersistenceEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 
-@Suppress("ktlint:standard:no-blank-line-in-list", "ktlint:standard:no-trailing-spaces")
 @Embeddable
+@PersistenceEntity
 data class AddressJpaEntity(
     @Column(name = "city", nullable = false)
     val city: String,
-    
+
     @Column(name = "street", nullable = false)
     val street: String,
-    
+
     @Column(name = "postal_code", nullable = false)
     val postalCode: String,
-    
+
     @Column(name = "country", nullable = false)
     val country: String,
-    
+
     @Column(name = "detail_address")
     val detailAddress: String? = null,
-    
+
     @Column(name = "province_or_state")
     val provinceOrState: String? = null,
 )

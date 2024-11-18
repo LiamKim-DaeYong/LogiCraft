@@ -3,6 +3,7 @@ package com.logicraft.masterdata.domain.location
 import com.logicraft.common.enums.ActiveStatus
 import com.logicraft.common.exception.DomainException
 import com.logicraft.masterdata.domain.location.enums.ZoneType
+import com.logicraft.masterdata.domain.location.policy.FifoPolicy
 import com.logicraft.masterdata.domain.location.policy.StoragePolicy
 import com.logicraft.masterdata.domain.warehouse.WarehouseId
 
@@ -13,7 +14,7 @@ class Zone(
     val code: ZoneCode,
     val type: ZoneType,
     val activeStatus: ActiveStatus,
-    override val storagePolicy: StoragePolicy,
+    override val storagePolicy: StoragePolicy = FifoPolicy(),
 ) : Location {
     private val _locations: MutableList<Location> = mutableListOf()
     val locations: List<Location> get() = _locations

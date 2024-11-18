@@ -1,8 +1,8 @@
 package com.logicraft.masterdata.adapter.out.persistence.adapter.warehouse
 
 import com.logicraft.common.annotations.PersistenceAdapter
-import com.logicraft.masterdata.adapter.out.persistence.mapper.toDomainEntity
-import com.logicraft.masterdata.adapter.out.persistence.mapper.toJpaEntity
+import com.logicraft.masterdata.adapter.out.persistence.mapper.warehouse.toDomainEntity
+import com.logicraft.masterdata.adapter.out.persistence.mapper.warehouse.toJpaEntity
 import com.logicraft.masterdata.adapter.out.persistence.repository.warehouse.WarehouseCommandRepository
 import com.logicraft.masterdata.application.port.out.warehouse.CreateWarehousePort
 import com.logicraft.masterdata.domain.warehouse.Warehouse

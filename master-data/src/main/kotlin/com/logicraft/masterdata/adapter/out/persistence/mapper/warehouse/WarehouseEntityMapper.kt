@@ -1,4 +1,4 @@
-package com.logicraft.masterdata.adapter.out.persistence.mapper
+package com.logicraft.masterdata.adapter.out.persistence.mapper.warehouse
 
 import com.logicraft.common.mapper.toDomainEntity
 import com.logicraft.common.mapper.toJpaEntity
@@ -27,7 +27,7 @@ fun Warehouse.toJpaEntity(): WarehouseJpaEntity {
 
 fun WarehouseJpaEntity.toDomainEntity(): Warehouse {
     return Warehouse(
-        id = WarehouseId(id.toString()),
+        id = WarehouseId(id),
         name = WarehouseName(name),
         address = address.toDomainEntity(),
         type = type,

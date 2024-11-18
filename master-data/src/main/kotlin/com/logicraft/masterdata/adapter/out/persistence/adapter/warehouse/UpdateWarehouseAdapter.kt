@@ -4,7 +4,7 @@ import com.logicraft.common.annotations.PersistenceAdapter
 import com.logicraft.common.exception.DomainException
 import com.logicraft.common.mapper.toJpaEntity
 import com.logicraft.masterdata.adapter.out.persistence.entity.warehouse.OperatingHoursJpaEntity
-import com.logicraft.masterdata.adapter.out.persistence.mapper.toDomainEntity
+import com.logicraft.masterdata.adapter.out.persistence.mapper.warehouse.toDomainEntity
 import com.logicraft.masterdata.adapter.out.persistence.repository.warehouse.WarehouseCommandRepository
 import com.logicraft.masterdata.application.port.out.warehouse.UpdateWarehousePort
 import com.logicraft.masterdata.domain.warehouse.Warehouse

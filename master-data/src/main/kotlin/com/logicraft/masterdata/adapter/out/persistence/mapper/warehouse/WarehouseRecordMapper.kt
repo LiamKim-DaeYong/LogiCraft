@@ -1,4 +1,4 @@
-package com.logicraft.masterdata.adapter.out.persistence.mapper
+package com.logicraft.masterdata.adapter.out.persistence.mapper.warehouse
 
 import com.logicraft.common.enums.ActiveStatus
 import com.logicraft.common.model.Address
