@@ -22,3 +22,7 @@ ktlint_standard_no-wildcard-imports = true
 ktlint_standard_no-consecutive-blank-lines = true
 ktlint_standard_no-blank-line-in-list = true
 ktlint_standard_no-unit-return = true
+
+[**/entity/**/*.kt]
+ktlint_standard_no-blank-line-in-list = disabled
+ktlint_standard_no-trailing-spaces = disabled

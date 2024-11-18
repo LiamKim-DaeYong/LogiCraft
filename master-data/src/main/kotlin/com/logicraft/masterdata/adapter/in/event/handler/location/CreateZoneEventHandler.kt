@@ -13,9 +13,8 @@ import org.springframework.context.event.EventListener
 
 @EventHandlerAdapter
 class CreateZoneEventHandler(
-    private val createZoneUseCase: CreateZoneUseCase
+    private val createZoneUseCase: CreateZoneUseCase,
 ) : EventProcessor<CreateZoneEvent> {
-
     @EventListener
     override fun handle(event: CreateZoneEvent) {
         val zone = createZoneUseCase.createZone(event.command)
@@ -29,6 +28,6 @@ data class CreateZoneEvent(
     val createZoneCommand: CreateZoneCommand,
     override val eventType: EventType = ZoneEventType.CreateZone,
 ) : CommandEvent<CreateZoneCommand>(
-    command = createZoneCommand,
-    eventType = eventType,
-)
+        command = createZoneCommand,
+        eventType = eventType,
+    )

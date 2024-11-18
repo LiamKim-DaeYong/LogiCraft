@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/locations/zones")
 class ZoneController(
-    private val zoneEventOrchestrator: ZoneEventOrchestrator
+    private val zoneEventOrchestrator: ZoneEventOrchestrator,
 ) {
-
     @PostMapping
     suspend fun createLocation(
         @RequestBody createZoneRequest: CreateZoneRequest,
@@ -25,7 +24,7 @@ class ZoneController(
         ).let {
             ApiResponse.created(
                 message = "Zone created successfully",
-                data = it
+                data = it,
             )
         }
     }

@@ -6,5 +6,5 @@ data class CreateZoneRequest(
     val warehouseId: String,
     val name: String,
     val code: String,
-    val type: ZoneType
+    val type: ZoneType,
 )

@@ -1,6 +1,5 @@
 package com.logicraft.masterdata.adapter.out.persistence.entity.location
 
-import com.logicraft.common.annotations.PersistenceEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -14,7 +13,6 @@ import jakarta.persistence.Table
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "location")
-@PersistenceEntity
 abstract class LocationJpaEntity(
     @Id
     @Column(name = "location_id", nullable = false)
@@ -25,5 +23,5 @@ abstract class LocationJpaEntity(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    val parent: LocationJpaEntity? = null
+    val parent: LocationJpaEntity? = null,
 )

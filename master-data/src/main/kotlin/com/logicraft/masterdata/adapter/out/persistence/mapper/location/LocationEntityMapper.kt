@@ -14,7 +14,7 @@ fun Zone.toJpaEntity(warehouseJpaEntity: WarehouseJpaEntity): ZoneJpaEntity {
         warehouse = warehouseJpaEntity,
         code = code,
         type = type,
-        activeStatus = activeStatus
+        activeStatus = activeStatus,
     )
 }
 

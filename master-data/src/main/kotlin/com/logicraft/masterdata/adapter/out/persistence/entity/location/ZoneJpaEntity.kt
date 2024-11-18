@@ -33,5 +33,5 @@ class ZoneJpaEntity(
 
     @Column(name = "location_active_status", nullable = false)
     @Enumerated(EnumType.STRING)
-    val activeStatus: ActiveStatus
+    val activeStatus: ActiveStatus,
 ) : LocationJpaEntity(id, name, parent)

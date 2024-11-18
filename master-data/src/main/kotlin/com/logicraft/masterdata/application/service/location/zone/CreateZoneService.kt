@@ -17,7 +17,7 @@ import java.util.UUID
 @Service
 @Transactional
 class CreateZoneService(
-    private val createZonePort: CreateZonePort
+    private val createZonePort: CreateZonePort,
 ) : CreateZoneUseCase {
     override fun createZone(command: CreateZoneCommand): Zone {
         val warehouseId = WarehouseId(command.warehouseId)

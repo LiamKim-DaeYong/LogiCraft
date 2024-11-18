@@ -1,11 +1,9 @@
 package com.logicraft.common.entity
 
-import com.logicraft.common.annotations.PersistenceEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 
 @Embeddable
-@PersistenceEntity
 data class AddressJpaEntity(
     @Column(name = "city", nullable = false)
     val city: String,

@@ -14,10 +14,9 @@ interface ZoneEventOrchestrator {
 class ZoneEventOrchestratorImpl(
     private val eventPublisher: EventPublisher,
 ) : ZoneEventOrchestrator {
-
     override suspend fun createZone(createZoneCommand: CreateZoneCommand): CreateZoneResponse {
         return eventPublisher.publishAndWaitForResponse(
-            event = CreateZoneEvent(createZoneCommand)
+            event = CreateZoneEvent(createZoneCommand),
         )
     }
 }

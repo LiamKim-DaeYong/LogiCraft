@@ -13,11 +13,12 @@ import com.logicraft.masterdata.domain.warehouse.Warehouse
 @PersistenceAdapter
 class CreateZoneAdapter(
     private val locationCommandRepository: LocationCommandRepository,
-    private val warehouseCommandRepository: WarehouseCommandRepository
+    private val warehouseCommandRepository: WarehouseCommandRepository,
 ) : CreateZonePort {
     override fun createZone(zone: Zone): Zone {
-        val warehouseJpaEntity =  warehouseCommandRepository.findById(zone.warehouseId.value)
-            .orElseThrow { DomainException.NotFoundException(Warehouse::class, zone.warehouseId.value) }
+        val warehouseJpaEntity =
+            warehouseCommandRepository.findById(zone.warehouseId.value)
+                .orElseThrow { DomainException.NotFoundException(Warehouse::class, zone.warehouseId.value) }
 
         val zoneJpaEntity = zone.toJpaEntity(warehouseJpaEntity)
         val savedEntity = locationCommandRepository.save(zoneJpaEntity)

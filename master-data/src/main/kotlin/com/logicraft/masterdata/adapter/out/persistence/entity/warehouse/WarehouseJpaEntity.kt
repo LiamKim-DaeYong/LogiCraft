@@ -1,6 +1,5 @@
 package com.logicraft.masterdata.adapter.out.persistence.entity.warehouse
 
-import com.logicraft.common.annotations.PersistenceEntity
 import com.logicraft.common.entity.AddressJpaEntity
 import com.logicraft.common.enums.ActiveStatus
 import com.logicraft.masterdata.domain.warehouse.enums.UsagePurpose
@@ -15,7 +14,6 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "warehouse")
-@PersistenceEntity
 class WarehouseJpaEntity(
     @Id
     @Column(name = "warehouse_id", nullable = false)
