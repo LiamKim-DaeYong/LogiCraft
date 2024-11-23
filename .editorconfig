@@ -26,3 +26,10 @@ ktlint_standard_no-unit-return = true
 [**/entity/**/*.kt]
 ktlint_standard_no-blank-line-in-list = disabled
 ktlint_standard_no-trailing-spaces = disabled
+
+# [gradle.properties]
+# # Disable trailing whitespace trimming for gradle.properties
+# trim_trailing_whitespace = false
+#
+# # Keep blank lines between comments
+# ktlint_standard_no-consecutive-blank-lines = disabled

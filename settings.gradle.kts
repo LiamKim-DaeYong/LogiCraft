@@ -18,7 +18,7 @@ pluginManagement {
     val kotlinVersion: String by settings
     val springBootVersion: String by settings
     val springDependencyManagementVersion: String by settings
-    val jooqVersion: String by settings
+    val jooqPluginVersion: String by settings
     val ktlintVersion: String by settings
 
     resolutionStrategy {
@@ -29,7 +29,7 @@ pluginManagement {
                 "org.jetbrains.kotlin.plugin.jpa" -> useVersion(kotlinVersion)
                 "org.springframework.boot" -> useVersion(springBootVersion)
                 "io.spring.dependency-management" -> useVersion(springDependencyManagementVersion)
-                "nu.studer.jooq" -> useVersion(jooqVersion)
+                "nu.studer.jooq" -> useVersion(jooqPluginVersion)
                 "org.jlleitschuh.gradle.ktlint" -> useVersion(ktlintVersion)
             }
         }

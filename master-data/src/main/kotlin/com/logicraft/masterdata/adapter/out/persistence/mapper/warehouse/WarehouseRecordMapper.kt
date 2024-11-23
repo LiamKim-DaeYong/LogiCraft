@@ -13,8 +13,8 @@ import com.logicraft.masterdata.domain.warehouse.enums.WarehouseType
 fun WarehouseRecord.toDomainEntity(): Warehouse {
     return Warehouse(
         id = WarehouseId(warehouseId),
-        name = WarehouseName(name),
-        type = WarehouseType.valueOf(type),
+        name = WarehouseName(warehouseName),
+        type = WarehouseType.valueOf(warehouseType),
         address =
             Address(
                 city = city,
@@ -30,6 +30,6 @@ fun WarehouseRecord.toDomainEntity(): Warehouse {
                 closingTime = closingTime,
             ),
         usagePurpose = UsagePurpose.valueOf(usagePurpose),
-        activeStatus = ActiveStatus.valueOf(status),
+        activeStatus = ActiveStatus.valueOf(activeStatus),
     )
 }

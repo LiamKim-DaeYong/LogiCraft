@@ -10,6 +10,7 @@ plugins {
 
 val version: String by project
 val projectGroup: String by project
+val springBootVersion: String by project
 allprojects {
     group = projectGroup
     version = version
@@ -71,9 +72,7 @@ subprojects {
     ktlint {
         ignoreFailures = true
         filter {
-            exclude { entry ->
-                entry.file.toString().run { contains("generated") || contains("test") }
-            }
+            exclude("**/generated/**", "**/test/**")
         }
     }
 

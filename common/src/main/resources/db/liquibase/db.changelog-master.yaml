@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: initial-schema
+      author: liamkim
+      changes:
+        - sqlFile:
+            path: db/liquibase/snapshots/initial-schema.sql
+            relativeToChangelogFile: true
+  - includeAll:
+      path: db/liquibase/changelogs/master-data
+#  - includeAll:
+#      path: db/liquibase/changelogs/outbound
