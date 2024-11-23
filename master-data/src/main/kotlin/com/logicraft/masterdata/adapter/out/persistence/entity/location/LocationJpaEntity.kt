@@ -16,12 +16,12 @@ import jakarta.persistence.Table
 abstract class LocationJpaEntity(
     @Id
     @Column(name = "location_id", nullable = false)
-    val id: String,
+    open val id: String,
 
     @Column(name = "location_name", nullable = false)
-    val name: String,
+    open var name: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    val parent: LocationJpaEntity? = null,
+    open var parent: LocationJpaEntity? = null,
 )

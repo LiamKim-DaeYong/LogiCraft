@@ -3,8 +3,7 @@ create table warehouse (
     warehouse_id varchar(255) primary key,
     warehouse_name varchar(255) not null,
     warehouse_type varchar(50) not null,
-    usage_purpose varchar(50) not null,
-    active_status varchar(50) not null,
+    warehouse_usage_purpose varchar(50) not null,
     city varchar(255) not null,
     street varchar(255) not null,
     postal_code varchar(20) not null,
@@ -12,7 +11,8 @@ create table warehouse (
     detail_address varchar(20),
     province_or_state varchar(20),
     opening_time time not null,
-    closing_time time not null
+    closing_time time not null,
+    warehouse_active_status varchar(50) not null
 );
 
 -- Location table (Base abstract entity)

@@ -29,7 +29,7 @@ fun WarehouseRecord.toDomainEntity(): Warehouse {
                 openingTime = openingTime,
                 closingTime = closingTime,
             ),
-        usagePurpose = UsagePurpose.valueOf(usagePurpose),
-        activeStatus = ActiveStatus.valueOf(activeStatus),
+        usagePurpose = UsagePurpose.valueOf(warehouseUsagePurpose),
+        activeStatus = ActiveStatus.valueOf(warehouseActiveStatus),
     )
 }
